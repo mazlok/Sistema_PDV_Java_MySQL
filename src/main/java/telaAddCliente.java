@@ -1,4 +1,7 @@
 
+import java.awt.Color;
+import static java.awt.Color.blue;
+import static javafx.scene.paint.Color.color;
 import javax.swing.JOptionPane;
 
 /*
@@ -38,10 +41,10 @@ public class telaAddCliente extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        CBoxEstadoCivil = new javax.swing.JComboBox<>();
         CBoxGenero = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         txtDataNasci = new javax.swing.JFormattedTextField();
+        txtFone = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -85,16 +88,7 @@ public class telaAddCliente extends javax.swing.JFrame {
         jLabel4.setText("E-mail: ");
 
         jLabel5.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
-        jLabel5.setText("Estado Civil: ");
-
-        CBoxEstadoCivil.setBackground(new java.awt.Color(153, 153, 255));
-        CBoxEstadoCivil.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
-        CBoxEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Solteiro(a)", "Casado(a)", "Viúvo(a)" }));
-        CBoxEstadoCivil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CBoxEstadoCivilActionPerformed(evt);
-            }
-        });
+        jLabel5.setText("Telefone: ");
 
         CBoxGenero.setBackground(new java.awt.Color(153, 153, 255));
         CBoxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "F", "M", "T", " " }));
@@ -113,38 +107,43 @@ public class telaAddCliente extends javax.swing.JFrame {
             }
         });
 
+        txtFone.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CBoxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CBoxEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDataNasci, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(TxtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFone, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtDataNasci, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TxtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CBoxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,18 +153,18 @@ public class telaAddCliente extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(TxtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(CBoxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(CBoxEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(txtDataNasci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(CBoxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Nirmala UI Semilight", 0, 14), new java.awt.Color(153, 153, 255))); // NOI18N
@@ -249,7 +248,7 @@ public class telaAddCliente extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BtnAddCliente)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -258,10 +257,6 @@ public class telaAddCliente extends javax.swing.JFrame {
     private void TxtNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNomeClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtNomeClienteActionPerformed
-
-    private void CBoxEstadoCivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBoxEstadoCivilActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CBoxEstadoCivilActionPerformed
 
     private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
    
@@ -273,13 +268,20 @@ public class telaAddCliente extends javax.swing.JFrame {
 
     private void BtnAddClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddClienteActionPerformed
 
+        String CPF = txtCPF.getText();
+        
         try {
-        int validaCampo = Integer.parseInt(txtNum.getText());
+            int validaCampo = Integer.parseInt(txtNum.getText());
         } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Digite apenas números!");
+            JOptionPane.showMessageDialog(this, "Digite o número do endereço!");
         }
         finally{
-        this.txtNum.setText("");
+            this.txtNum.setText("");
+        }
+        
+        if (CPF==null || CPF.equals("") || CPF.equals("###.###.###-##")) {
+            JOptionPane.showMessageDialog(this, "Digite um valor para o CPF!");
+            txtCPF.setBackground(Color.red);
         }
     }//GEN-LAST:event_BtnAddClienteActionPerformed
 
@@ -320,7 +322,6 @@ public class telaAddCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAddCliente;
-    private javax.swing.JComboBox<String> CBoxEstadoCivil;
     private javax.swing.JComboBox<String> CBoxGenero;
     private javax.swing.JTextField TxtNomeCliente;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -339,6 +340,7 @@ public class telaAddCliente extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JFormattedTextField txtDataNasci;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtFone;
     private javax.swing.JTextField txtNum;
     // End of variables declaration//GEN-END:variables
 }

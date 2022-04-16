@@ -151,6 +151,9 @@ public class telaAddProduto extends javax.swing.JFrame {
         } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Digite apenas números!");
         }
+        finally{
+        this.txtQuantidade.setText("");
+        }
     }//GEN-LAST:event_BtntelaAddProdActionPerformed
 
     /**
