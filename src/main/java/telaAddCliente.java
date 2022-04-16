@@ -34,7 +34,7 @@ public class telaAddCliente extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        TxtNomeCliente = new javax.swing.JTextField();
+        txtNomeCliente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtCPF = new javax.swing.JFormattedTextField();
@@ -47,7 +47,7 @@ public class telaAddCliente extends javax.swing.JFrame {
         txtFone = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtEnde = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtNum = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -61,9 +61,9 @@ public class telaAddCliente extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         jLabel1.setText("Nome:");
 
-        TxtNomeCliente.addActionListener(new java.awt.event.ActionListener() {
+        txtNomeCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtNomeClienteActionPerformed(evt);
+                txtNomeClienteActionPerformed(evt);
             }
         });
 
@@ -127,7 +127,7 @@ public class telaAddCliente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(TxtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -151,7 +151,7 @@ public class telaAddCliente extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(TxtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
@@ -172,7 +172,7 @@ public class telaAddCliente extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         jLabel7.setText("Logradouro:");
 
-        jTextField1.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
+        txtEnde.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         jLabel8.setText("Nº:");
@@ -196,7 +196,7 @@ public class telaAddCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtEnde, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -210,7 +210,7 @@ public class telaAddCliente extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEnde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -254,9 +254,9 @@ public class telaAddCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TxtNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNomeClienteActionPerformed
+    private void txtNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TxtNomeClienteActionPerformed
+    }//GEN-LAST:event_txtNomeClienteActionPerformed
 
     private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
    
@@ -269,19 +269,47 @@ public class telaAddCliente extends javax.swing.JFrame {
     private void BtnAddClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddClienteActionPerformed
 
         String CPF = txtCPF.getText();
+        String nome = txtNomeCliente.getText();
+        String email = txtEmail.getText();
+        String tel = txtFone.getText();
+        String end = txtEnde.getText();
+        boolean validaCPF = false;
+        boolean validaNome = false;
+        boolean validaEmail = false;
+        boolean validaTel = false;
+        boolean validaEnd = false;
         
         try {
             int validaCampo = Integer.parseInt(txtNum.getText());
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Digite o número do endereço!");
+            JOptionPane.showMessageDialog(this, "Digite um número para o endereço!");
         }
         finally{
             this.txtNum.setText("");
         }
         
-        if (CPF==null || CPF.equals("") || CPF.equals("###.###.###-##")) {
-            JOptionPane.showMessageDialog(this, "Digite um valor para o CPF!");
+        if (CPF==null || CPF.equals("") || CPF.equals("   .   .   -  ")) {
             txtCPF.setBackground(Color.red);
+            validaCPF = true;
+        }
+        if (nome.equals("")) {
+            txtNomeCliente.setBackground(Color.red);
+            validaNome = true;
+        }
+        if (email.equals("")) {
+            txtEmail.setBackground(Color.red);
+            validaEmail = true;
+        }
+        if (tel.equals("")) {
+            txtFone.setBackground(Color.red);
+            validaTel = true;
+        }
+        if (end.equals("")) {
+            txtEnde.setBackground(Color.red);
+            validaEnd = true;
+        }
+        if (validaCPF || validaNome || validaTel || validaEnd || validaEmail) {
+            JOptionPane.showMessageDialog(this,"Preencha os campos obrigatórios.");           
         }
     }//GEN-LAST:event_BtnAddClienteActionPerformed
 
@@ -323,7 +351,6 @@ public class telaAddCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAddCliente;
     private javax.swing.JComboBox<String> CBoxGenero;
-    private javax.swing.JTextField TxtNomeCliente;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -336,11 +363,12 @@ public class telaAddCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JFormattedTextField txtDataNasci;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtEnde;
     private javax.swing.JTextField txtFone;
+    private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNum;
     // End of variables declaration//GEN-END:variables
 }
