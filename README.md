@@ -1,2 +1,2 @@
 # projeto_integradorII
-- Projeto II (CRUD)
+- CRUD de loja de informática
