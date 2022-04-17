@@ -40,7 +40,6 @@ public class telaPrincipal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(901, 591));
 

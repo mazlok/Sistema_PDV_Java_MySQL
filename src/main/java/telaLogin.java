@@ -35,7 +35,6 @@ public class telaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("login");
-        setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setExtendedState(1);
         setPreferredSize(new java.awt.Dimension(1024, 720));

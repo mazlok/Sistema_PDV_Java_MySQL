@@ -31,7 +31,6 @@ public class telaProdutos extends javax.swing.JFrame {
         BtnVoltar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
 
         labelProd.setBackground(new java.awt.Color(255, 0, 255));
         labelProd.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 18)); // NOI18N

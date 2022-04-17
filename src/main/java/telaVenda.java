@@ -56,7 +56,6 @@ public class telaVenda extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
 
         jLabel3.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 14)); // NOI18N
         jLabel3.setText("TOTAL:");

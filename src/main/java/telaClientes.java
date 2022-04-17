@@ -38,7 +38,6 @@ public class telaClientes extends javax.swing.JFrame {
         BtnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1013, 519));
 
