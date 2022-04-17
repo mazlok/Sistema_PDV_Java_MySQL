@@ -150,9 +150,7 @@ public class telaAddProduto extends javax.swing.JFrame {
 
     private void BtntelaAddProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtntelaAddProdActionPerformed
       
-        boolean validaNomeProduto = false, validaDesc = false, validaQnt = false;
-        String nomeProduto = txtNomeProduto.getText();
-        
+        boolean validaNomeProduto = false, validaDesc = false, validaQnt = false;        
         try {
         int validaQuanti = Integer.parseInt(txtQuantidade.getText());
         } catch (Exception e) {
@@ -163,7 +161,7 @@ public class telaAddProduto extends javax.swing.JFrame {
         this.txtQuantidade.setText("");
         }
         
-        if (nomeProduto.equals("")) {
+        if (txtNomeProduto.getText().equals("")) {
             txtNomeProduto.setBackground(Color.red);
             validaNomeProduto = true;
         }
