@@ -1,7 +1,5 @@
 
 import java.awt.Color;
-import static java.awt.Color.blue;
-import static javafx.scene.paint.Color.color;
 import javax.swing.JOptionPane;
 
 /*
@@ -21,6 +19,7 @@ public class telaAddCliente extends javax.swing.JFrame {
      */
     public telaAddCliente() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -54,7 +53,9 @@ public class telaAddCliente extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         BtnAddCliente = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setType(java.awt.Window.Type.POPUP);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro: ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Nirmala UI Semilight", 0, 14), new java.awt.Color(153, 153, 255))); // NOI18N
 

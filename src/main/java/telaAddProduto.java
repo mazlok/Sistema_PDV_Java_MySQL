@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,6 +20,7 @@ public class telaAddProduto extends javax.swing.JFrame {
      */
     public telaAddProduto() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -39,7 +41,9 @@ public class telaAddProduto extends javax.swing.JFrame {
         txtQuantidade = new javax.swing.JTextField();
         BtntelaAddProd = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setType(java.awt.Window.Type.POPUP);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Nirmala UI Semilight", 0, 14), new java.awt.Color(153, 153, 255))); // NOI18N
 
@@ -146,14 +150,34 @@ public class telaAddProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_txtQuantidadeActionPerformed
 
     private void BtntelaAddProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtntelaAddProdActionPerformed
+      
+        boolean validaNomeProduto = false, validaDesc = false, validaQnt = false;
+        String nomeProduto = txtNomeProduto.getText();
+        
         try {
         int validaQuanti = Integer.parseInt(txtQuantidade.getText());
         } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Digite apenas números!");
+        JOptionPane.showMessageDialog(this, "Digite a quantidade em números.");
+        txtQuantidade.setBackground(Color.red);
         }
         finally{
         this.txtQuantidade.setText("");
         }
+        
+        if (nomeProduto.equals("")) {
+            txtNomeProduto.setBackground(Color.red);
+            validaNomeProduto = true;
+        }
+        
+        if (txtDesc.getText().equals("")) {
+            txtDesc.setBackground(Color.red);
+            validaDesc = true;
+        }
+        
+        if (validaNomeProduto || validaDesc || validaQnt ) {
+            JOptionPane.showMessageDialog(this,"Preencha os campos obrigatórios.");           
+        }
+            
     }//GEN-LAST:event_BtntelaAddProdActionPerformed
 
     /**
