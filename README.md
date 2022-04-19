@@ -1,7 +1,7 @@
 # projeto_integradorII
-- Sistema de vendas para Loja de Informática com CRUD.
+Sistema de Vendas para Loja de Informática com CRUD.
 
-- Desenvolvedores:
+Desenvolvedores:
 
 - Alexandre Machado
 - Bruna Gomes
