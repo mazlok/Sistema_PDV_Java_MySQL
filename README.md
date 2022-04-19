@@ -1,2 +1,11 @@
 # projeto_integradorII
-- CRUD de loja de informática
+- Sistema de vendas para Loja de Informática com CRUD.
+
+- Desenvolvedores:
+
+- Alexandre Machado
+- Bruna Gomes
+- Lucas Oliveira
+- Ramon Nogueira
+- Wellerson Mateus
+- William Mazotti
