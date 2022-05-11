@@ -3,6 +3,15 @@ public class Produto {
     
     String nome, desc;
     int codigo, quantidade;
+    float preco;
+
+    public float getPreco() {
+        return preco;
+    }
+
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
 
     public String getNome() {
         return nome;

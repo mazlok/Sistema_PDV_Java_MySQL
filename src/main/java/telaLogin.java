@@ -1,8 +1,10 @@
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class telaLogin extends javax.swing.JFrame {
 
+     ConexaoComputador cc = new ConexaoComputador();
     /**
      * Creates new form telaLogin
      */
@@ -166,6 +168,8 @@ public class telaLogin extends javax.swing.JFrame {
 
     private void logarVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logarVendedorActionPerformed
 
+        ArrayList<Produto> lista = cc.consultarComputador();
+        System.out.println(lista.get(0));
         String login = usuario.getText();
         String password = senha.getText();
         
