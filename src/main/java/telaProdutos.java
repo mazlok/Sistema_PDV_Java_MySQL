@@ -1,16 +1,29 @@
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+
 
 public class telaProdutos extends javax.swing.JFrame {
 
+      ConexaoComputador cc = new ConexaoComputador();
     /**
      * Creates new form telaProdutos
      */
     public telaProdutos() {
-        initComponents();
+       initComponents();
        setLocationRelativeTo(null);
-       //setExtendedState(telaLogin.MAXIMIZED_BOTH);
-    }
+       ArrayList<Produto> lista = cc.consultarComputador();
+        System.out.println(lista.get(1).getDesc());
+        DefaultTableModel model = (DefaultTableModel) tablePro.getModel();
+      for( int i = 0; i < lista.size(); i++){
+          System.out.println("entrou");
+          model.addRow(new Object []{lista.get(i).getCodigo(), lista.get(i).getNome(), lista.get(i).getQuantidade(), lista.get(i).getDesc()});
+      }
+      }
+       
+      
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,10 +56,7 @@ public class telaProdutos extends javax.swing.JFrame {
         tablePro.setForeground(new java.awt.Color(51, 51, 51));
         tablePro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Código", "Nome", "Quantidade", "Descrição"
@@ -142,6 +152,7 @@ public class telaProdutos extends javax.swing.JFrame {
 
         telaAddProduto add = new telaAddProduto();
         add.setVisible(true);
+        
 
     }//GEN-LAST:event_AddBtnActionPerformed
 
@@ -183,6 +194,7 @@ public class telaProdutos extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new telaProdutos().setVisible(true);
+                
             }
         });
         

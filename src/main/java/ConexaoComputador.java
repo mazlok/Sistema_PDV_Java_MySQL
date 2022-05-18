@@ -35,11 +35,11 @@ public class ConexaoComputador {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
-            rs = instrucaoSQL.executeQuery("SELECT * FROM produto;");
+            rs = instrucaoSQL.executeQuery("SELECT * FROM produtos;");
             if (rs != null) {
                 while (rs.next()) {
                     Produto c = new Produto();
-                    c.setCodigo(rs.getInt("codigo"));
+                    c.setCodigo(rs.getInt("id"));
                     c.setNome(rs.getString("nome"));
                     c.setDesc(rs.getString("descProd"));
                     c.setPreco(rs.getFloat("preco"));
