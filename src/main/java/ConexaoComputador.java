@@ -28,7 +28,7 @@ public class ConexaoComputador {
 
     }
 
-    public static ArrayList<Produto> consultarComputador() {
+    public static ArrayList<Produto> consultarProdutos() {
         ArrayList<Produto> listaRetorno = new ArrayList<>();
         try {
 //Carrego o driver para acesso ao banco
@@ -47,7 +47,6 @@ public class ConexaoComputador {
                     listaRetorno.add(c);
                 }
             } else {
-                System.out.println("n acessou o banco");
                 throw new SQLException();
             }
         } catch (SQLException e) {
@@ -73,19 +72,42 @@ public class ConexaoComputador {
         return listaRetorno;
     } //fim do método consultarClientes
 
-    public static void excluirComputador(int id) {
+    public static void adicionarProdutos(String nome, String desc, float preco, int quant) {
         try {
+            System.out.println("entrou no adicionar");
 //Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
-            int linhas = instrucaoSQL.executeUpdate("DELETE FROM computador where idComputador = " + id + ";");
-            if (rs != null) {
-                while (rs.next()) {
+            int linhas = instrucaoSQL.executeUpdate("insert into produtos (nome,descProd,preco,quantidade) values ('"+nome+"', '"+desc+"', "+preco+", "+quant+")");
+            System.out.println(linhas);
+        } catch (SQLException e) {
+        } catch (ClassNotFoundException ex) {
+        } finally {
+//Libero os recursos usados
+            try {
+                if (rs != null) {
+                    rs.close();
                 }
-            } else {
-                throw new SQLException();
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (SQLException ex) {
             }
+        }
+    }
+        public static void excluirProdutos(int id) {
+        try {
+            System.out.println("entrou no excluir");
+//Carrego o driver para acesso ao banco
+            Class.forName(DRIVER);
+            conexao = DriverManager.getConnection(url, LOGIN, SENHA);
+            Statement instrucaoSQL = conexao.createStatement();
+            int linhas = instrucaoSQL.executeUpdate("DELETE FROM produtos where id = " + id + ";");
+            System.out.println(linhas);
         } catch (SQLException e) {
         } catch (ClassNotFoundException ex) {
         } finally {

@@ -6,18 +6,19 @@ import javax.swing.table.DefaultTableModel;
 public class telaProdutos extends javax.swing.JFrame {
 
       ConexaoComputador cc = new ConexaoComputador();
+      ArrayList<Produto> lista = cc.consultarProdutos();
+
     /**
      * Creates new form telaProdutos
      */
     public telaProdutos() {
        initComponents();
        setLocationRelativeTo(null);
-       ArrayList<Produto> lista = cc.consultarComputador();
+       ArrayList<Produto> lista = cc.consultarProdutos();
         System.out.println(lista.get(1).getDesc());
         DefaultTableModel model = (DefaultTableModel) tablePro.getModel();
       for( int i = 0; i < lista.size(); i++){
-          System.out.println("entrou");
-          model.addRow(new Object []{lista.get(i).getCodigo(), lista.get(i).getNome(), lista.get(i).getQuantidade(), lista.get(i).getDesc()});
+          model.addRow(new Object []{lista.get(i).getCodigo(), lista.get(i).getNome(), lista.get(i).getQuantidade(), lista.get(i).getDesc(), lista.get(i).getPreco()});
       }
       }
        
@@ -50,7 +51,7 @@ public class telaProdutos extends javax.swing.JFrame {
         labelProd.setForeground(new java.awt.Color(204, 102, 255));
         labelProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgPC.png"))); // NOI18N
         labelProd.setText("PRODUTOS");
-        labelProd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 204, 255), new java.awt.Color(204, 153, 255), new java.awt.Color(153, 204, 255), new java.awt.Color(204, 153, 255)));
+        labelProd.setBorder(new javax.swing.border.SoftBevelBorder(0, new java.awt.Color(153, 204, 255), new java.awt.Color(204, 153, 255), new java.awt.Color(153, 204, 255), new java.awt.Color(204, 153, 255)));
 
         tablePro.setBackground(new java.awt.Color(204, 255, 255));
         tablePro.setForeground(new java.awt.Color(51, 51, 51));
@@ -59,7 +60,7 @@ public class telaProdutos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nome", "Quantidade", "Descrição"
+                "Código", "Nome", "Quantidade", "Descrição", "Preço"
             }
         ));
         jScrollPane1.setViewportView(tablePro);
@@ -76,10 +77,20 @@ public class telaProdutos extends javax.swing.JFrame {
         EditBtn.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         EditBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgEditar.png"))); // NOI18N
         EditBtn.setText("Editar");
+        EditBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditBtnActionPerformed(evt);
+            }
+        });
 
         ExcBtn.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         ExcBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgExcluir.png"))); // NOI18N
         ExcBtn.setText("Excluir");
+        ExcBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExcBtnActionPerformed(evt);
+            }
+        });
 
         BtnVoltar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgtelaClienteHouse.png"))); // NOI18N
         BtnVoltar1.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +173,33 @@ public class telaProdutos extends javax.swing.JFrame {
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnVoltar1ActionPerformed
+
+    private void ExcBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcBtnActionPerformed
+        int selectedIndex = tablePro.getSelectedRow();
+        ((DefaultTableModel)tablePro.getModel()).removeRow(selectedIndex);
+        int id = lista.get(selectedIndex).getCodigo();
+        cc.excluirProdutos(id);
+
+        
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ExcBtnActionPerformed
+
+    private void EditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditBtnActionPerformed
+        telaAddProduto add = new telaAddProduto();
+        int selectedIndex = tablePro.getSelectedRow();
+        String nome = lista.get(selectedIndex).getNome(); 
+        String desc = lista.get(selectedIndex).getDesc(); 
+        float preco = lista.get(selectedIndex).getPreco(); 
+        int quant = lista.get(selectedIndex).getQuantidade(); 
+        add.desc = desc; 
+        add.nome = nome;
+        add.preco = preco;
+        add.quant = quant;
+        add.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditBtnActionPerformed
 
     /**
      * @param args the command line arguments

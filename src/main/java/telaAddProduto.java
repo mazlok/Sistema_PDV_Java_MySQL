@@ -8,12 +8,16 @@ import javax.swing.table.DefaultTableModel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Bruna
  */
 public class telaAddProduto extends javax.swing.JFrame {
+    String nome , desc ;
+    float preco ;
+    int quant ;
+        
+    ConexaoComputador cc = new ConexaoComputador();
 
     /**
      * Creates new form telaAddProduto
@@ -21,6 +25,10 @@ public class telaAddProduto extends javax.swing.JFrame {
     public telaAddProduto() {
         initComponents();
         setLocationRelativeTo(null);
+        txtQuantidade.setText(String.valueOf(quant));
+        txtDesc.setText(String.valueOf(desc));
+        txtPreco.setText(String.valueOf(preco));
+        txtNomeProduto.setText(String.valueOf(nome));
     }
 
     /**
@@ -40,11 +48,13 @@ public class telaAddProduto extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtQuantidade = new javax.swing.JTextField();
         BtntelaAddProd = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtPreco = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setType(java.awt.Window.Type.POPUP);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Nirmala UI Semilight", 0, 14), new java.awt.Color(153, 153, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produto", 0, 0, new java.awt.Font("Nirmala UI Semilight", 0, 14), new java.awt.Color(153, 153, 255))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         jLabel1.setText("Nome:");
@@ -76,6 +86,15 @@ public class telaAddProduto extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+        jLabel4.setText("Preço:");
+
+        txtPreco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -92,9 +111,15 @@ public class telaAddProduto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtQuantidade)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtPreco))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtQuantidade)))))
                 .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -110,11 +135,15 @@ public class telaAddProduto extends javax.swing.JFrame {
                     .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(BtntelaAddProd)
                 .addContainerGap())
         );
@@ -149,33 +178,52 @@ public class telaAddProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_txtQuantidadeActionPerformed
 
     private void BtntelaAddProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtntelaAddProdActionPerformed
-      
-        boolean validaNomeProduto = false, validaDesc = false, validaQnt = false;        
+String nome = "" , desc = "" ;
+    float preco = 0.0f;
+    int quant = 0;
+        boolean validaNomeProduto = false, validaDesc = false, validaQnt = false, validaPreco = false;
+
         try {
-        int validaQuanti = Integer.parseInt(txtQuantidade.getText());
+            quant = Integer.parseInt(txtQuantidade.getText());
         } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Digite a quantidade em números.");
-        txtQuantidade.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Digite a quantidade em números.");
+            txtQuantidade.setBackground(Color.red);
+        } finally {
+            this.txtQuantidade.setText("");
         }
-        finally{
-        this.txtQuantidade.setText("");
-        }
-        
+
         if (txtNomeProduto.getText().equals("")) {
             txtNomeProduto.setBackground(Color.red);
+            nome = txtNomeProduto.getText();
             validaNomeProduto = true;
         }
-        
+
         if (txtDesc.getText().equals("")) {
             txtDesc.setBackground(Color.red);
             validaDesc = true;
+            desc = txtDesc.getText();
         }
-        
-        if (validaNomeProduto || validaDesc || validaQnt ) {
-            JOptionPane.showMessageDialog(this,"Preencha os campos obrigatórios.");           
+
+        if (txtPreco.getText().equals("")) {
+            txtPreco.setBackground(Color.red);
+            validaDesc = true;
         }
-            
+        if (validaNomeProduto || validaDesc || validaQnt || validaPreco) {
+            JOptionPane.showMessageDialog(this, "Preencha os campos obrigatórios.");
+        } else {
+            preco = Float.parseFloat(txtPreco.getText());
+            nome = txtNomeProduto.getText();
+            desc = txtDesc.getText();
+            preco = Float.parseFloat(txtPreco.getText());
+            cc.adicionarProdutos(nome, desc, preco, quant);
+            this.setVisible(false);
+        }
+
     }//GEN-LAST:event_BtntelaAddProdActionPerformed
+
+    private void txtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,9 +265,11 @@ public class telaAddProduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtDesc;
     private javax.swing.JTextField txtNomeProduto;
+    private javax.swing.JTextField txtPreco;
     private javax.swing.JTextField txtQuantidade;
     // End of variables declaration//GEN-END:variables
 }
