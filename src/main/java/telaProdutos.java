@@ -14,7 +14,7 @@ public class telaProdutos extends javax.swing.JFrame {
     public telaProdutos() {
        initComponents();
        setLocationRelativeTo(null);
-       ArrayList<Produto> lista = cc.consultarProdutos();
+        lista = cc.consultarProdutos();
         System.out.println(lista.get(1).getDesc());
         DefaultTableModel model = (DefaultTableModel) tablePro.getModel();
       for( int i = 0; i < lista.size(); i++){
@@ -43,6 +43,7 @@ public class telaProdutos extends javax.swing.JFrame {
         EditBtn = new javax.swing.JButton();
         ExcBtn = new javax.swing.JButton();
         BtnVoltar1 = new javax.swing.JButton();
+        ExcBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -51,7 +52,7 @@ public class telaProdutos extends javax.swing.JFrame {
         labelProd.setForeground(new java.awt.Color(204, 102, 255));
         labelProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgPC.png"))); // NOI18N
         labelProd.setText("PRODUTOS");
-        labelProd.setBorder(new javax.swing.border.SoftBevelBorder(0, new java.awt.Color(153, 204, 255), new java.awt.Color(204, 153, 255), new java.awt.Color(153, 204, 255), new java.awt.Color(204, 153, 255)));
+        labelProd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 204, 255), new java.awt.Color(204, 153, 255), new java.awt.Color(153, 204, 255), new java.awt.Color(204, 153, 255)));
 
         tablePro.setBackground(new java.awt.Color(204, 255, 255));
         tablePro.setForeground(new java.awt.Color(51, 51, 51));
@@ -99,6 +100,15 @@ public class telaProdutos extends javax.swing.JFrame {
             }
         });
 
+        ExcBtn1.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+        ExcBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Reload-32x.png"))); // NOI18N
+        ExcBtn1.setText("Atualizar");
+        ExcBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExcBtn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -113,7 +123,8 @@ public class telaProdutos extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(AddBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(EditBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ExcBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(ExcBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ExcBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(95, 95, 95))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(BtnVoltar1)
@@ -130,11 +141,13 @@ public class telaProdutos extends javax.swing.JFrame {
                         .addGap(45, 45, 45)
                         .addComponent(EditBtn)
                         .addGap(43, 43, 43)
-                        .addComponent(ExcBtn))
+                        .addComponent(ExcBtn)
+                        .addGap(49, 49, 49)
+                        .addComponent(ExcBtn1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(104, 104, 104)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                 .addComponent(BtnVoltar1)
                 .addContainerGap())
         );
@@ -144,16 +157,12 @@ public class telaProdutos extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(0, 48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -186,20 +195,31 @@ public class telaProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_ExcBtnActionPerformed
 
     private void EditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditBtnActionPerformed
-        telaAddProduto add = new telaAddProduto();
+        telaAltProduto add = new telaAltProduto();
         int selectedIndex = tablePro.getSelectedRow();
         String nome = lista.get(selectedIndex).getNome(); 
         String desc = lista.get(selectedIndex).getDesc(); 
         float preco = lista.get(selectedIndex).getPreco(); 
         int quant = lista.get(selectedIndex).getQuantidade(); 
-        add.desc = desc; 
-        add.nome = nome;
-        add.preco = preco;
-        add.quant = quant;
+        int id = lista.get(selectedIndex).getCodigo();
+        add.setTxtDesc(desc);
+        add.setTxtNome(nome);
+        add.setTxtPreco(preco);
+        add.setTxtQuant(quant);
+        add.setId(id);
         add.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_EditBtnActionPerformed
+
+    private void ExcBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcBtn1ActionPerformed
+        lista = cc.consultarProdutos();
+        DefaultTableModel model = (DefaultTableModel) tablePro.getModel();
+        model.setRowCount(0);
+      for( int k = 0; k < lista.size(); k++){
+          model.addRow(new Object []{lista.get(k).getCodigo(), lista.get(k).getNome(), lista.get(k).getQuantidade(), lista.get(k).getDesc(), lista.get(k).getPreco()});
+          System.out.println(k);
+      }    }//GEN-LAST:event_ExcBtn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,6 +266,7 @@ public class telaProdutos extends javax.swing.JFrame {
     private javax.swing.JButton BtnVoltar1;
     private javax.swing.JButton EditBtn;
     private javax.swing.JButton ExcBtn;
+    private javax.swing.JButton ExcBtn1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelProd;

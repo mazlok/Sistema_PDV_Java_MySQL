@@ -7,6 +7,7 @@ telaVenda$2.class
 telaRelatorios.class
 telaProdutos$3.class
 telaAddProduto$2.class
+telaAddProduto$5.class
 telaLogin.class
 telaPrincipal$3.class
 telaLogin$2.class
@@ -20,6 +21,7 @@ telaAddCliente$2.class
 telaClientes$1.class
 telaProdutos$2.class
 telaPrincipal$4.class
+telaProdutos$5.class
 telaAddProduto$4.class
 telaClientes$2.class
 telaAddCliente$5.class
@@ -38,6 +40,7 @@ telaPrincipal$5.class
 telaAddCliente.class
 telaAddCliente$4.class
 telaAddProduto.class
+telaProdutos$4.class
 telaClientes$3.class
 telaVenda.class
 ConexaoComputador.class

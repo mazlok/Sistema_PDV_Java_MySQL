@@ -126,4 +126,31 @@ public class ConexaoComputador {
             }
         }
     }
+        public static void alterarProdutos(int id, String nome, String desc, float preco, int quant) {
+        try {
+            System.out.println("entrou no adicionar");
+//Carrego o driver para acesso ao banco
+            Class.forName(DRIVER);
+            conexao = DriverManager.getConnection(url, LOGIN, SENHA);
+            Statement instrucaoSQL = conexao.createStatement();
+            int linhas = instrucaoSQL.executeUpdate("update produtos set nome = '"+nome+"',descProd = '"+desc+"',preco = "+preco+",quantidade = "+quant+" where id ="+id+";");
+            System.out.println(linhas);
+        } catch (SQLException e) {
+        } catch (ClassNotFoundException ex) {
+        } finally {
+//Libero os recursos usados
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (SQLException ex) {
+            }
+        }
+    }
 } // fim da classe ClienteDAO

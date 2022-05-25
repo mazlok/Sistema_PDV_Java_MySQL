@@ -25,10 +25,7 @@ public class telaAddProduto extends javax.swing.JFrame {
     public telaAddProduto() {
         initComponents();
         setLocationRelativeTo(null);
-        txtQuantidade.setText(String.valueOf(quant));
-        txtDesc.setText(String.valueOf(desc));
-        txtPreco.setText(String.valueOf(preco));
-        txtNomeProduto.setText(String.valueOf(nome));
+
     }
 
     /**
@@ -214,7 +211,6 @@ String nome = "" , desc = "" ;
             preco = Float.parseFloat(txtPreco.getText());
             nome = txtNomeProduto.getText();
             desc = txtDesc.getText();
-            preco = Float.parseFloat(txtPreco.getText());
             cc.adicionarProdutos(nome, desc, preco, quant);
             this.setVisible(false);
         }
