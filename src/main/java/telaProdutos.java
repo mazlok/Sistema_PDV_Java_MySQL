@@ -101,7 +101,7 @@ public class telaProdutos extends javax.swing.JFrame {
         });
 
         ExcBtn1.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
-        ExcBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Reload-32x.png"))); // NOI18N
+        ExcBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgAdicionar.png"))); // NOI18N
         ExcBtn1.setText("Atualizar");
         ExcBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,13 +119,13 @@ public class telaProdutos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(91, 91, 91)
+                        .addGap(88, 88, 88)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(AddBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(EditBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ExcBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ExcBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(95, 95, 95))
+                        .addGap(101, 101, 101))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(BtnVoltar1)
                         .addContainerGap())))
@@ -138,12 +138,12 @@ public class telaProdutos extends javax.swing.JFrame {
                         .addComponent(labelProd)
                         .addGap(83, 83, 83)
                         .addComponent(AddBtn)
-                        .addGap(45, 45, 45)
+                        .addGap(39, 39, 39)
                         .addComponent(EditBtn)
-                        .addGap(43, 43, 43)
+                        .addGap(40, 40, 40)
                         .addComponent(ExcBtn)
-                        .addGap(49, 49, 49)
-                        .addComponent(ExcBtn1))
+                        .addGap(40, 40, 40)
+                        .addComponent(ExcBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(104, 104, 104)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))

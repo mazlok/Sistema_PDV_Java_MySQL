@@ -167,7 +167,6 @@ String nome = "" , desc = "" ;
             preco = Float.parseFloat(jTextFieldPreco.getText());
             nome = jTextFieldNome.getText();
             desc = String.valueOf(jTextFieldDesc.getText());
-            quant = Integer.parseInt(jTextFieldQuant.getText());
             cc.alterarProdutos(id, nome, desc, preco, quant);
             this.setVisible(false);
         }
