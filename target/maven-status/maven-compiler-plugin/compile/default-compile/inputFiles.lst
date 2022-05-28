@@ -1,16 +1,17 @@
-C:\Users\alexandre.dmachado2\Downloads\projeto_integradorII\src\main\java\telaVenda.java
-C:\Users\alexandre.dmachado2\Downloads\projeto_integradorII\src\main\java\telaProdutos.java
-C:\Users\alexandre.dmachado2\Downloads\projeto_integradorII\src\main\java\telaClientes.java
-C:\Users\alexandre.dmachado2\Downloads\projeto_integradorII\src\main\java\Produto.java
-C:\Users\alexandre.dmachado2\Downloads\projeto_integradorII\src\main\java\telaAddProduto.java
-C:\Users\alexandre.dmachado2\Downloads\projeto_integradorII\src\main\java\Main.java
-C:\Users\alexandre.dmachado2\Downloads\projeto_integradorII\src\main\java\telaAddCliente.java
-C:\Users\alexandre.dmachado2\Downloads\projeto_integradorII\src\main\java\Cliente.java
-C:\Users\alexandre.dmachado2\Downloads\projeto_integradorII\src\main\java\ConexaoComputador.java
-C:\Users\alexandre.dmachado2\Downloads\projeto_integradorII\src\main\java\Venda.java
-C:\Users\alexandre.dmachado2\Downloads\projeto_integradorII\src\main\java\Vendedor.java
-C:\Users\alexandre.dmachado2\Downloads\projeto_integradorII\src\main\java\telaBusca.java
-C:\Users\alexandre.dmachado2\Downloads\projeto_integradorII\src\main\java\Relatorio.java
-C:\Users\alexandre.dmachado2\Downloads\projeto_integradorII\src\main\java\telaLogin.java
-C:\Users\alexandre.dmachado2\Downloads\projeto_integradorII\src\main\java\telaPrincipal.java
-C:\Users\alexandre.dmachado2\Downloads\projeto_integradorII\src\main\java\telaRelatorios.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\models\Relatorio.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\view\telaPrincipal.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\models\Cliente.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\Main.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\view\telaLogin.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\view\telaRelatorios.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\view\telaAddCliente.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\view\telaVenda.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\utils\ConexaoComputador.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\view\telaAltProduto.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\models\Venda.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\models\Produto.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\view\telaBusca.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\models\Vendedor.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\view\telaAddProduto.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\view\telaClientes.java
+C:\Trabalhos tads\2\PI\projeto_integradorII\src\main\java\view\telaProdutos.java
