@@ -1,0 +1,3 @@
+-- Criação do relatório analítico
+-- Versão 1.0
+-- Consultar a procedure no caso de alteração e validar as informações com o banco
