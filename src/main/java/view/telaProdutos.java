@@ -100,7 +100,7 @@ public class telaProdutos extends javax.swing.JFrame {
         });
 
         ExcAtt.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
-        ExcAtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconAtualizar.png"))); // NOI18N
+        ExcAtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgLogin.png"))); // NOI18N
         ExcAtt.setText("Atualizar");
         ExcAtt.setMaximumSize(new java.awt.Dimension(104, 38));
         ExcAtt.setMinimumSize(new java.awt.Dimension(104, 38));

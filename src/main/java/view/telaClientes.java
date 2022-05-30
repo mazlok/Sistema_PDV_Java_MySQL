@@ -117,7 +117,7 @@ public class telaClientes extends javax.swing.JFrame {
         });
 
         BtnAtt.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
-        BtnAtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconAtualizar.png"))); // NOI18N
+        BtnAtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgLogin.png"))); // NOI18N
         BtnAtt.setText("Atualizar");
         BtnAtt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -88,7 +88,7 @@ public class telaVenda extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        lblSacola = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
@@ -252,8 +252,8 @@ public class telaVenda extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 14)); // NOI18N
         jLabel2.setText("SACOLA DO CLIENTE:");
 
-        jLabel12.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
-        jLabel12.setText("lblClienteNome");
+        lblSacola.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+        lblSacola.setText("lblClienteNome");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -265,7 +265,7 @@ public class telaVenda extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblSacola, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -277,7 +277,7 @@ public class telaVenda extends javax.swing.JFrame {
                         .addGap(38, 38, 38)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblSacola, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -479,6 +479,7 @@ public class telaVenda extends javax.swing.JFrame {
         p.setPreco(Float.valueOf(jLabel16.getText()));
         p.setQuantidade(Integer.parseInt(jSpinner1.getValue().toString()));
         p.setNome(jLabel14.getText());
+        lblSacola.setText(String.valueOf(jComboBoxCliente.getSelectedItem()));
         if(jComboBoxProduto.getSelectedItem() != null && jComboBoxCliente.getSelectedItem() != null ){
         listaDeCompras.add(p);
         model.addRow(new Object[]{jLabel8.getText(), jLabel14.getText(), jSpinner1.getValue(), jLabel16.getText()});
@@ -551,7 +552,6 @@ public class telaVenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -575,6 +575,7 @@ public class telaVenda extends javax.swing.JFrame {
     private javax.swing.JLabel lblCodProduto;
     private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblNomeProduto;
+    private javax.swing.JLabel lblSacola;
     private javax.swing.JLabel lblTotalVenda;
     // End of variables declaration//GEN-END:variables
         ActionListener cbpActionListener = new ActionListener() {//add actionlistner to listen for change
