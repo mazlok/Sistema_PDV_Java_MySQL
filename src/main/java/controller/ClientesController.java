@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class ClientesController {
 
     public static void Inserir(String cpf, String dataNasc, String email, String endereco, String estadoCivil, String nome, String sexo, String telefone) {
-        System.out.println("entrou na controller");
         ClientesDAO.adicionarClientes(cpf, dataNasc, email, endereco, estadoCivil, nome, sexo, telefone);
     }
 
@@ -24,10 +23,14 @@ public class ClientesController {
     }
 
     public static void Alterar(int id, String cpf, String dataNasc, String email, String endereco, String estadoCivil, String nome, String sexo, String telefone) {
-        ClientesDAO.alterarProdutos(id, cpf, dataNasc, email, endereco, estadoCivil, nome, sexo, telefone);
+        ClientesDAO.alterarClientes(id, cpf, dataNasc, email, endereco, estadoCivil, nome, sexo, telefone);
     }
 
     public static void Excluir(int id) {
         ClientesDAO.excluirClientes(id);
+    }
+    
+    public static ArrayList<Cliente> Filtar(String filtro){
+       return ClientesDAO.filtrarClientes(filtro);
     }
 }

@@ -24,4 +24,7 @@ public class ProdutosController {
     public static void Excluir(int id){
         ProdutosDAO.excluirProdutos(id);
     }
+    public static ArrayList<Produto> Filtar(String filtro){
+        return ProdutosDAO.filtrarProdutos(filtro);
+    }
 }

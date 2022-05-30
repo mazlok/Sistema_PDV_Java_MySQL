@@ -1,6 +1,7 @@
 package view;
 
 
+import controller.ClientesController;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -18,6 +19,7 @@ import javax.swing.JTextField;
  * @author Bruna
  */
 public class telaAltCliente extends javax.swing.JFrame {
+    private int id;
 
     /**
      * Creates new form telaAddCliente
@@ -100,7 +102,7 @@ public class telaAltCliente extends javax.swing.JFrame {
         jLabel6.setText("Data de nascimento: ");
 
         try {
-            txtDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####/##/##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -139,20 +141,20 @@ public class telaAltCliente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFone, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtFone, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CBoxECivil, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,6 +289,18 @@ public class telaAltCliente extends javax.swing.JFrame {
         }
         if (validaCPF || validaNome || validaTel || validaEnd || validaEmail) {
             JOptionPane.showMessageDialog(this,"Preencha os campos obrigatórios.");           
+        } else {
+            ClientesController.Alterar(id,
+                    txtCPF.getText(),
+                    txtDataNasc.getText().replace("/", ""),
+                    txtEmail.getText(),
+                    txtEnde.getText(),
+                    CBoxECivil.getSelectedItem().toString(),
+                    txtNomeCliente.getText(),
+                    CBoxGenero.getSelectedItem().toString(),
+                    txtFone.getText());
+            this.setVisible(false);
+                    
         }
     }//GEN-LAST:event_BtnAddClienteActionPerformed
 
@@ -377,5 +391,8 @@ public class telaAltCliente extends javax.swing.JFrame {
 
     public void setTxtNomeCliente(String nomeCliente) {
         this.txtNomeCliente.setText(nomeCliente);
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 }

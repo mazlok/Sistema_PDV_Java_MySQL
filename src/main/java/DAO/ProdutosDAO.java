@@ -68,12 +68,11 @@ public class ProdutosDAO {
 
     public static void adicionarProdutos(String nome, String desc, float preco, int quant) {
         try {
-            System.out.println("entrou no adicionar");
 //Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
-            int linhas = instrucaoSQL.executeUpdate("insert into produto (nm_produto,descricao,preco,estoque) values ('"+nome+"', '"+desc+"', "+preco+", "+quant+")");
+            int linhas = instrucaoSQL.executeUpdate("insert into produto (nm_produto,descricao,preco,estoque) values ('" + nome + "', '" + desc + "', " + preco + ", " + quant + ")");
             System.out.println(linhas);
         } catch (SQLException e) {
         } catch (ClassNotFoundException ex) {
@@ -93,9 +92,9 @@ public class ProdutosDAO {
             }
         }
     }//fim do método adicionarProdutos
-        public static void excluirProdutos(int id) {
+
+    public static void excluirProdutos(int id) {
         try {
-            System.out.println("entrou no excluir");
 //Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
@@ -120,14 +119,14 @@ public class ProdutosDAO {
             }
         }
     }//fim do método excluirProdutos
-        public static void alterarProdutos(int id, String nome, String desc, float preco, int quant) {
+
+    public static void alterarProdutos(int id, String nome, String desc, float preco, int quant) {
         try {
-            System.out.println("entrou no alterar");
 //Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
-            int linhas = instrucaoSQL.executeUpdate("update produto set nm_produto = '"+nome+"',descricao = '"+desc+"',preco = "+preco+",estoque = "+quant+" where cd_produto ="+id+";");
+            int linhas = instrucaoSQL.executeUpdate("update produto set nm_produto = '" + nome + "',descricao = '" + desc + "',preco = " + preco + ",estoque = " + quant + " where cd_produto =" + id + ";");
             System.out.println(linhas);
         } catch (SQLException e) {
         } catch (ClassNotFoundException ex) {
@@ -147,4 +146,86 @@ public class ProdutosDAO {
             }
         }
     }//fim do método alterarProdutos
+
+    public static ArrayList<Produto> filtrarProdutos(String filtro) {
+        ArrayList<Produto> listaRetorno = new ArrayList<>();
+        try {
+//Carrego o driver para acesso ao banco
+            Class.forName(DRIVER);
+            int cont = 0;
+            conexao = DriverManager.getConnection(url, LOGIN, SENHA);
+            Statement instrucaoSQL = conexao.createStatement();
+            rs = instrucaoSQL.executeQuery("SELECT * FROM produto where nm_produto = '" + filtro + "';");
+            if (rs != null) {
+                while (rs.next()) {
+                    Produto c = new Produto();
+                    c.setCodigo(rs.getInt("cd_produto"));
+                    c.setNome(rs.getString("nm_produto"));
+                    c.setDesc(rs.getString("descricao"));
+                    c.setPreco(rs.getFloat("preco"));
+                    c.setQuantidade(rs.getInt("estoque"));
+                    listaRetorno.add(c);
+                    cont++;
+                }
+                if (cont >= 1) {
+                    return listaRetorno;
+                }
+            }
+            rs = instrucaoSQL.executeQuery("SELECT * FROM produto where nm_produto like '%" + filtro + "';");
+            if (rs != null) {
+                while (rs.next()) {
+                    Produto c = new Produto();
+                    c.setCodigo(rs.getInt("cd_produto"));
+                    c.setNome(rs.getString("nm_produto"));
+                    c.setDesc(rs.getString("descricao"));
+                    c.setPreco(rs.getFloat("preco"));
+                    c.setQuantidade(rs.getInt("estoque"));
+                    listaRetorno.add(c);
+                    cont++;
+                }
+                if (cont >= 1) {
+                    return listaRetorno;
+                }
+            }
+            rs = instrucaoSQL.executeQuery("SELECT * FROM produto where nm_produto like '" + filtro + "%';");
+            if (rs != null) {
+                while (rs.next()) {
+                    Produto c = new Produto();
+                    c.setCodigo(rs.getInt("cd_produto"));
+                    c.setNome(rs.getString("nm_produto"));
+                    c.setDesc(rs.getString("descricao"));
+                    c.setPreco(rs.getFloat("preco"));
+                    c.setQuantidade(rs.getInt("estoque"));
+                    listaRetorno.add(c);
+                    cont++;
+                }
+                if (cont >= 1) {
+                    return listaRetorno;
+                }
+            } else {
+                throw new SQLException();
+            }
+        } catch (SQLException e) {
+            listaRetorno = null;
+        } catch (ClassNotFoundException ex) {
+
+            listaRetorno = null;
+        } finally {
+//Libero os recursos usados
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (SQLException ex) {
+            }
+        }
+        return listaRetorno;
+    } //fim do método filtrarProdutos
+
 } // fim da classe ProdutosDAO

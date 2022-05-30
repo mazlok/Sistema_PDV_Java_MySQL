@@ -1,6 +1,7 @@
 package view;
 
 import controller.ClientesController;
+import controller.ProdutosController;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import models.Cliente;
@@ -16,7 +17,7 @@ import view.telaPrincipal;
  * @author Bruna
  */
 public class telaClientes extends javax.swing.JFrame {
-
+    
     ArrayList<Cliente> clientes;
 
     /**
@@ -57,6 +58,8 @@ public class telaClientes extends javax.swing.JFrame {
         BtnEdit = new javax.swing.JButton();
         BtnExc = new javax.swing.JButton();
         BtnAtt = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
         BtnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -81,6 +84,10 @@ public class telaClientes extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(55);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(40);
+        }
 
         BtnAdd.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         BtnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgAdd.png"))); // NOI18N
@@ -111,13 +118,21 @@ public class telaClientes extends javax.swing.JFrame {
 
         BtnAtt.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         BtnAtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconAtualizar.png"))); // NOI18N
-        BtnAtt.setText("Excluir");
-        BtnAtt.setActionCommand("Atualizar");
+        BtnAtt.setText("Atualizar");
         BtnAtt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAttActionPerformed(evt);
             }
         });
+
+        jButton1.setText("Filtrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setToolTipText("Filtrar por nome ou CPF do cliente");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,41 +144,42 @@ public class telaClientes extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(labelProd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(BtnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(42, 42, 42)
-                                        .addComponent(BtnAdd))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(BtnExc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(BtnAtt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(0, 22, Short.MAX_VALUE))))
+                                .addComponent(jTextField1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(48, 48, 48)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BtnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnAdd)
+                            .addComponent(BtnExc, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(labelProd)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
                         .addComponent(BtnAdd)
                         .addGap(46, 46, 46)
                         .addComponent(BtnEdit)
-                        .addGap(48, 48, 48)
+                        .addGap(46, 46, 46)
                         .addComponent(BtnExc)
-                        .addGap(48, 48, 48)
+                        .addGap(45, 45, 45)
                         .addComponent(BtnAtt)
-                        .addContainerGap())))
+                        .addContainerGap(114, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
 
         BtnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgtelaClienteHouse.png"))); // NOI18N
@@ -178,12 +194,12 @@ public class telaClientes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(971, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnVoltar)
                 .addGap(15, 15, 15))
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 993, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1116, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -191,7 +207,7 @@ public class telaClientes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(BtnVoltar)
                 .addContainerGap())
         );
@@ -200,24 +216,28 @@ public class telaClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVoltarActionPerformed
-
+        
         telaPrincipal tela = new telaPrincipal();
         tela.setVisible(true);
         dispose();
 
     }//GEN-LAST:event_BtnVoltarActionPerformed
 
-    private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
-        telaAddCliente telaC = new telaAddCliente();
-        telaC.setVisible(true);
-    }//GEN-LAST:event_BtnAddActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (!jTextField1.getText().isBlank()) {
+            clientes = ClientesController.Filtar(jTextField1.getText());
+            attTela(clientes);
+        } else {
+            clientes = ClientesController.Clientes();
+            attTela(clientes);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BtnAttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAttActionPerformed
-        // TODO add your handling code here:
+        this.attTela(ClientesController.Clientes());
     }//GEN-LAST:event_BtnAttActionPerformed
 
     private void BtnExcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcActionPerformed
-        System.err.println("pressionou o botao");
         int selectedIndex = jTable1.getSelectedRow();
         ((DefaultTableModel) jTable1.getModel()).removeRow(selectedIndex);
         int id = clientes.get(selectedIndex).getId();
@@ -225,19 +245,25 @@ public class telaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnExcActionPerformed
 
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
-       telaAltCliente telaC = new telaAltCliente();
-       int selectedIndex = jTable1.getSelectedRow();
-       telaC.setCBoxECivil(clientes.get(selectedIndex).getEstadoCivil());
-       telaC.setCBoxGenero(clientes.get(selectedIndex).getSexo());
-       telaC.setTxtCPF(clientes.get(selectedIndex).getCpf());
-       telaC.setTxtDataNasc(clientes.get(selectedIndex).getDataNasc().replace("-", ""));
-       telaC.setTxtEmail(clientes.get(selectedIndex).getEmail());
-       telaC.setTxtEnde(clientes.get(selectedIndex).getEndereço());
-       telaC.setTxtFone(clientes.get(selectedIndex).getTelefone());
-       telaC.setTxtNomeCliente(clientes.get(selectedIndex).getNome());
-       telaC.setVisible(true);
-       
+        telaAltCliente telaC = new telaAltCliente();
+        int selectedIndex = jTable1.getSelectedRow();
+        telaC.setCBoxECivil(clientes.get(selectedIndex).getEstadoCivil());
+        telaC.setCBoxGenero(clientes.get(selectedIndex).getSexo());
+        telaC.setTxtCPF(clientes.get(selectedIndex).getCpf());
+        telaC.setTxtDataNasc(clientes.get(selectedIndex).getDataNasc().replace("-", ""));
+        telaC.setTxtEmail(clientes.get(selectedIndex).getEmail());
+        telaC.setTxtEnde(clientes.get(selectedIndex).getEndereço());
+        telaC.setTxtFone(clientes.get(selectedIndex).getTelefone());
+        telaC.setTxtNomeCliente(clientes.get(selectedIndex).getNome());
+        telaC.setId(clientes.get(selectedIndex).getId());
+        telaC.setVisible(true);
+
     }//GEN-LAST:event_BtnEditActionPerformed
+
+    private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
+        telaAddCliente telaC = new telaAddCliente();
+        telaC.setVisible(true);
+    }//GEN-LAST:event_BtnAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,9 +306,27 @@ public class telaClientes extends javax.swing.JFrame {
     private javax.swing.JButton BtnEdit;
     private javax.swing.JButton BtnExc;
     private javax.swing.JButton BtnVoltar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelProd;
     // End of variables declaration//GEN-END:variables
-    }
+ public void attTela(ArrayList<Cliente> listaClientes) {
+        clientes = listaClientes;
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        for (int i = 0; i < clientes.size(); i++) {
+            model.addRow(new Object[]{clientes.get(i).getId(),
+                clientes.get(i).getNome(),
+                clientes.get(i).getSexo(),
+                clientes.get(i).getCpf(),
+                clientes.get(i).getEmail(),
+                clientes.get(i).getTelefone(),
+                clientes.get(i).getEndereço(),
+                clientes.get(i).getEstadoCivil(),
+                clientes.get(i).getDataNasc()});
+        }
+    }    
+}
