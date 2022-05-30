@@ -3,6 +3,8 @@ package view;
 
 import view.telaRelatorios;
 import view.telaVenda;
+import models.Vendedor;
+import controller.PedidosController;
 
 /**
  *
@@ -16,7 +18,9 @@ public class telaPrincipal extends javax.swing.JFrame {
     public telaPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
-        //setExtendedState(telaLogin.MAXIMIZED_BOTH);
+        lblVendedor.setText(Vendedor.getInstance().getUsuario());
+        jLabel4.setText(String.valueOf(PedidosController.vendasPorVendedor(String.valueOf(Vendedor.getInstance().getCd_vendedor()))));
+        
     }
 
     /**

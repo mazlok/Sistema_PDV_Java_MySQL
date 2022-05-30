@@ -23,7 +23,7 @@ insert into produto (nm_produto, preco, estoque, descricao) values
 insert into pedido (cd_produto, cd_vendedor, cd_cliente, quantidade, dataVenda) values
 (1, 2, 2, 5, '2022-05-25');
 
-select * from vendedor;
+select * from vendedor where cd_vendedor = 2;
 select * from cliente;
 select * from produto;
 select * from pedido;

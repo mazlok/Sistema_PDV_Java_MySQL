@@ -1,14 +1,18 @@
 package view;
 
 import DAO.ProdutosDAO;
+import DAO.VendedorDAO;
+import controller.VendedorController;
 import view.telaPrincipal;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import models.Vendedor;
 
 public class telaLogin extends javax.swing.JFrame {
 
-     ProdutosDAO cc = new ProdutosDAO();
+    ProdutosDAO cc = new ProdutosDAO();
+
     /**
      * Creates new form telaLogin
      */
@@ -17,9 +21,9 @@ public class telaLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         //setExtendedState(telaLogin.MAXIMIZED_BOTH);
     }
-    
-    public static final Color lred = new Color(255,102,102);
-    public static final Color lblue = new Color(51,204,255);
+
+    public static final Color lred = new Color(255, 102, 102);
+    public static final Color lblue = new Color(51, 204, 255);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -174,15 +178,20 @@ public class telaLogin extends javax.swing.JFrame {
 
         String login = usuario.getText();
         String password = senha.getText();
-        
-        if(usuario.getText().equals("bruna.gc") && senha.getText().equals("123")){
+
+        VendedorController.Login(login);
+        if (password.equals(Vendedor.getInstance().getSenha())) {
             telaPrincipal tela = new telaPrincipal();
             tela.setVisible(true);
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Usuário ou senha inválido");
+            Vendedor.getInstance().setNome("");
+            Vendedor.getInstance().setSenha("");
+            Vendedor.getInstance().setUsuario("");
+            Vendedor.getInstance().setCd_vendedor(0);
         }
-        
+
     }//GEN-LAST:event_logarVendedorActionPerformed
 
     private void senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaActionPerformed
@@ -190,7 +199,7 @@ public class telaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_senhaActionPerformed
 
     private void usuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usuarioFocusGained
-          
+
     }//GEN-LAST:event_usuarioFocusGained
 
     /**
