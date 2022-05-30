@@ -47,7 +47,10 @@ CREATE TABLE pedido (
 CREATE TABLE pedido_detalhe (
 	cd_pedido_detalhe int not null primary key auto_increment,
 	cd_produto int not null,
+    cd_pedido int not null,
     	CONSTRAINT fk_cd_produto FOREIGN KEY (cd_produto)
         REFERENCES produto (cd_produto),
+        CONSTRAINT fk_cd_pedido FOREIGN KEY (cd_pedido)
+        REFERENCES pedido (cd_pedido),
 	quantidade smallint not null
 );
