@@ -52,7 +52,7 @@
                               <Component id="AddBtn" max="32767" attributes="0"/>
                               <Component id="EditBtn" alignment="0" max="32767" attributes="0"/>
                               <Component id="ExcBtn" alignment="0" max="32767" attributes="0"/>
-                              <Component id="ExcBtn1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="ExcAtt" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                       </Group>
@@ -77,7 +77,7 @@
                           <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="ExcBtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="ExcBtn1" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="ExcAtt" min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
@@ -199,18 +199,27 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnVoltar1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="ExcBtn1">
+        <Component class="javax.swing.JButton" name="ExcAtt">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Nirmala UI Semilight" size="14" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imgAdicionar.png"/>
+              <Image iconType="3" name="/iconAtualizar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Atualizar"/>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[104, 38]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[104, 38]"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[104, 38]"/>
+            </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ExcBtn1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ExcAttActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

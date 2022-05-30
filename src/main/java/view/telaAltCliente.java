@@ -1,9 +1,11 @@
 package view;
 
 
-import controller.ClientesController;
 import java.awt.Color;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,12 +17,12 @@ import javax.swing.JOptionPane;
  *
  * @author Bruna
  */
-public class telaAddCliente extends javax.swing.JFrame {
+public class telaAltCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form telaAddCliente
      */
-    public telaAddCliente() {
+    public telaAltCliente() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -102,11 +104,10 @@ public class telaAddCliente extends javax.swing.JFrame {
         jLabel6.setText("Data de nascimento: ");
 
         try {
-            txtDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####/##/##")));
+            txtDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtDataNasc.setToolTipText("AAAA/MM/DD");
         txtDataNasc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDataNascActionPerformed(evt);
@@ -119,11 +120,6 @@ public class telaAddCliente extends javax.swing.JFrame {
 
         CBoxECivil.setBackground(new java.awt.Color(153, 153, 255));
         CBoxECivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solteiro(a)", "Casado(a)", "Viúvo(a)" }));
-        CBoxECivil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CBoxECivilActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -238,7 +234,7 @@ public class telaAddCliente extends javax.swing.JFrame {
 
         BtnAddCliente.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         BtnAddCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgAdd.png"))); // NOI18N
-        BtnAddCliente.setText("Adicionar");
+        BtnAddCliente.setText("Alterar");
         BtnAddCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAddClienteActionPerformed(evt);
@@ -250,11 +246,11 @@ public class telaAddCliente extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(343, 343, 343)
                 .addComponent(BtnAddCliente)
-                .addGap(310, 310, 310))
+                .addContainerGap(344, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,22 +322,8 @@ public class telaAddCliente extends javax.swing.JFrame {
         }
         if (validaCPF || validaNome || validaTel || validaEnd || validaEmail) {
             JOptionPane.showMessageDialog(this,"Preencha os campos obrigatórios.");           
-        } else {
-            ClientesController.Inserir(txtCPF.getText(),
-                    txtDataNasc.getText().replace("/", ""),
-                    txtEmail.getText(),
-                    String.valueOf(txtEnde.getText()+ " ," + CBoxEstado.getSelectedItem().toString() + " N" +  txtNum.getText()),
-                    CBoxECivil.getSelectedItem().toString(),
-                    txtNomeCliente.getText(),
-                    CBoxGenero.getSelectedItem().toString(),
-                    txtFone.getText());
-                    
         }
     }//GEN-LAST:event_BtnAddClienteActionPerformed
-
-    private void CBoxECivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBoxECivilActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CBoxECivilActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,20 +342,21 @@ public class telaAddCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(telaAddCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaAltCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(telaAddCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaAltCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(telaAddCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaAltCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(telaAddCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaAltCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaAddCliente().setVisible(true);
+                new telaAltCliente().setVisible(true);
             }
         });
     }
@@ -403,4 +386,47 @@ public class telaAddCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNum;
     // End of variables declaration//GEN-END:variables
+public void setTxtNome(String nome){
+        
+    }
+
+    public void setCBoxECivil(String eCivil) {
+        this.CBoxECivil.setSelectedItem(eCivil);
+    }
+
+    public void setCBoxEstado(String estado) {
+        this.CBoxEstado.setSelectedItem(estado);
+    }
+
+    public void setCBoxGenero(String genero) {
+        this.CBoxGenero.setSelectedItem(genero);
+    }
+
+    public void setTxtCPF(String CPF) {
+        this.txtCPF.setText(CPF);
+    }
+
+    public void setTxtDataNasc(String dataNasc) {
+        this.txtDataNasc.setText(dataNasc);
+    }
+
+    public void setTxtEmail(String email) {
+        this.txtEmail.setText(email);
+    }
+
+    public void setTxtEnde(String end) {
+        this.txtEnde.setText(end);
+    }
+
+    public void setTxtFone(String fone) {
+        this.txtFone.setText(fone);
+    }
+
+    public void setTxtNomeCliente(String nomeCliente) {
+        this.txtNomeCliente.setText(nomeCliente);
+    }
+
+    public void setTxtNum(String num) {
+        this.txtNum.setText(num);
+    }
 }

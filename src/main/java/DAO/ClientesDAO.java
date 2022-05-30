@@ -6,9 +6,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import models.Produto;
+import models.Cliente;
 
-public class ProdutosDAO {
+public class ClientesDAO {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver"; //Driver do Mysql 8.0
     private static final String LOGIN = "root"; //nome do usuário do banco
@@ -18,26 +18,26 @@ public class ProdutosDAO {
     private static ResultSet rs;
     private static Statement instrucaoSQL;
 
-    public ProdutosDAO() {
-
-    }
-
-    public static ArrayList<Produto> consultarProdutos() {
-        ArrayList<Produto> listaRetorno = new ArrayList<>();
+    public static ArrayList<Cliente> consultarClientes() {
+        ArrayList<Cliente> listaRetorno = new ArrayList<>();
         try {
 //Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
-            rs = instrucaoSQL.executeQuery("SELECT * FROM produto;");
+            rs = instrucaoSQL.executeQuery("SELECT * FROM cliente;");
             if (rs != null) {
                 while (rs.next()) {
-                    Produto c = new Produto();
-                    c.setCodigo(rs.getInt("cd_produto"));
-                    c.setNome(rs.getString("nm_produto"));
-                    c.setDesc(rs.getString("descricao"));
-                    c.setPreco(rs.getFloat("preco"));
-                    c.setQuantidade(rs.getInt("estoque"));
+                    Cliente c = new Cliente();
+                    c.setId(rs.getInt("cd_cliente"));
+                    c.setCpf(rs.getString("cpf"));
+                    c.setDataNasc(rs.getString("dataNasc"));
+                    c.setEmail(rs.getString("email"));
+                    c.setEndereço(rs.getString("endereco"));
+                    c.setEstadoCivil(rs.getString("estadoCivil"));
+                    c.setNome(rs.getString("nm_cliente"));
+                    c.setSexo(rs.getString("genero"));
+                    c.setTelefone(rs.getString("telefone"));
                     listaRetorno.add(c);
                 }
             } else {
@@ -64,16 +64,23 @@ public class ProdutosDAO {
             }
         }
         return listaRetorno;
-    } //fim do método consultarProdutos
+    } //fim do método consultarClientes
 
-    public static void adicionarProdutos(String nome, String desc, float preco, int quant) {
+    public static void adicionarClientes(String cpf, String dataNasc, String email, String endereco, String estadoCivil, String nome, String sexo, String telefone) {
         try {
-            System.out.println("entrou no adicionar");
-//Carrego o driver para acesso ao banco
+            System.out.println(cpf);
+            System.out.println(dataNasc);
+            System.out.println(email);
+            System.out.println(endereco);
+            System.out.println(estadoCivil);
+            System.out.println(nome);
+            System.out.println(sexo);
+            System.out.println(telefone);
+            
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
-            int linhas = instrucaoSQL.executeUpdate("insert into produto (nm_produto,descricao,preco,estoque) values ('"+nome+"', '"+desc+"', "+preco+", "+quant+")");
+            int linhas = instrucaoSQL.executeUpdate("insert into cliente (nm_cliente, genero, email, endereco, dataNasc, cpf, telefone) values ('" + nome + "', '" + sexo + "', '" + email + "', '" + endereco + "', " + dataNasc + ", '" + cpf + "','" + telefone + "');");
             System.out.println(linhas);
         } catch (SQLException e) {
         } catch (ClassNotFoundException ex) {
@@ -92,15 +99,15 @@ public class ProdutosDAO {
             } catch (SQLException ex) {
             }
         }
-    }//fim do método adicionarProdutos
-        public static void excluirProdutos(int id) {
+    }//fim do método adicionarClientes
+
+    public static void excluirClientes(int id) {
         try {
-            System.out.println("entrou no excluir");
 //Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
-            int linhas = instrucaoSQL.executeUpdate("DELETE FROM produto where cd_produto = " + id + ";");
+            int linhas = instrucaoSQL.executeUpdate("DELETE FROM cliente where cd_cliente = " + id + ";");
             System.out.println(linhas);
         } catch (SQLException e) {
         } catch (ClassNotFoundException ex) {
@@ -119,15 +126,16 @@ public class ProdutosDAO {
             } catch (SQLException ex) {
             }
         }
-    }//fim do método excluirProdutos
-        public static void alterarProdutos(int id, String nome, String desc, float preco, int quant) {
+    }//fim do método excluirClientes
+
+    public static void alterarProdutos(int id, String cpf, String dataNasc, String email, String endereco, String estadoCivil, String nome, String sexo, String telefone) {
         try {
             System.out.println("entrou no alterar");
-//Carrego o driver para acesso ao banco
+            //Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
-            int linhas = instrucaoSQL.executeUpdate("update produto set nm_produto = '"+nome+"',descricao = '"+desc+"',preco = "+preco+",estoque = "+quant+" where cd_produto ="+id+";");
+            int linhas = instrucaoSQL.executeUpdate("update cliente set nm_cliente = '" + nome + "',genero  = '" + sexo + "',email = '" + email + "',endereco = '" + endereco + "', estadoCivil = '" + estadoCivil + "',  dataNasc = " + dataNasc + ", cpf = " + cpf + ", telefone = '" + telefone + "' where id =" + id + ";");
             System.out.println(linhas);
         } catch (SQLException e) {
         } catch (ClassNotFoundException ex) {
@@ -147,4 +155,4 @@ public class ProdutosDAO {
             }
         }
     }//fim do método alterarProdutos
-} // fim da classe ProdutosDAO
+} // fim da classe ClienteDAO

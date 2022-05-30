@@ -9,18 +9,18 @@ import controller.ProdutosController;
 
 public class telaProdutos extends javax.swing.JFrame {
 
-    ArrayList<Produto> lista;
+    ArrayList<Produto> produtos;
     /**
      * Creates new form telaProdutos
      */
     public telaProdutos() {
         initComponents();
         setLocationRelativeTo(null);
-        lista = ProdutosController.Produtos();
-        System.out.println(lista.get(1).getDesc());
+        produtos = ProdutosController.Produtos();
+        System.out.println(produtos.get(1).getDesc());
         DefaultTableModel model = (DefaultTableModel) tablePro.getModel();
-        for (int i = 0; i < lista.size(); i++) {
-            model.addRow(new Object[]{lista.get(i).getCodigo(), lista.get(i).getNome(), lista.get(i).getQuantidade(), lista.get(i).getDesc(), lista.get(i).getPreco()});
+        for (int i = 0; i < produtos.size(); i++) {
+            model.addRow(new Object[]{produtos.get(i).getCodigo(), produtos.get(i).getNome(), produtos.get(i).getQuantidade(), produtos.get(i).getDesc(), produtos.get(i).getPreco()});
         }
     }
 
@@ -41,7 +41,7 @@ public class telaProdutos extends javax.swing.JFrame {
         EditBtn = new javax.swing.JButton();
         ExcBtn = new javax.swing.JButton();
         BtnVoltar1 = new javax.swing.JButton();
-        ExcBtn1 = new javax.swing.JButton();
+        ExcAtt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -98,12 +98,15 @@ public class telaProdutos extends javax.swing.JFrame {
             }
         });
 
-        ExcBtn1.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
-        ExcBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgAdicionar.png"))); // NOI18N
-        ExcBtn1.setText("Atualizar");
-        ExcBtn1.addActionListener(new java.awt.event.ActionListener() {
+        ExcAtt.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+        ExcAtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconAtualizar.png"))); // NOI18N
+        ExcAtt.setText("Atualizar");
+        ExcAtt.setMaximumSize(new java.awt.Dimension(104, 38));
+        ExcAtt.setMinimumSize(new java.awt.Dimension(104, 38));
+        ExcAtt.setPreferredSize(new java.awt.Dimension(104, 38));
+        ExcAtt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExcBtn1ActionPerformed(evt);
+                ExcAttActionPerformed(evt);
             }
         });
 
@@ -122,7 +125,7 @@ public class telaProdutos extends javax.swing.JFrame {
                             .addComponent(AddBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(EditBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ExcBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ExcBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(ExcAtt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(101, 101, 101))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(BtnVoltar1)
@@ -141,7 +144,7 @@ public class telaProdutos extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addComponent(ExcBtn)
                         .addGap(40, 40, 40)
-                        .addComponent(ExcBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ExcAtt, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(104, 104, 104)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -182,7 +185,7 @@ public class telaProdutos extends javax.swing.JFrame {
     private void ExcBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcBtnActionPerformed
         int selectedIndex = tablePro.getSelectedRow();
         ((DefaultTableModel) tablePro.getModel()).removeRow(selectedIndex);
-        int id = lista.get(selectedIndex).getCodigo();
+        int id = produtos.get(selectedIndex).getCodigo();
         ProdutosController.Excluir(id);
 
         // TODO add your handling code here:
@@ -191,11 +194,11 @@ public class telaProdutos extends javax.swing.JFrame {
     private void EditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditBtnActionPerformed
         telaAltProduto add = new telaAltProduto();
         int selectedIndex = tablePro.getSelectedRow();
-        String nome = lista.get(selectedIndex).getNome();
-        String desc = lista.get(selectedIndex).getDesc();
-        float preco = lista.get(selectedIndex).getPreco();
-        int quant = lista.get(selectedIndex).getQuantidade();
-        int id = lista.get(selectedIndex).getCodigo();
+        String nome = produtos.get(selectedIndex).getNome();
+        String desc = produtos.get(selectedIndex).getDesc();
+        float preco = produtos.get(selectedIndex).getPreco();
+        int quant = produtos.get(selectedIndex).getQuantidade();
+        int id = produtos.get(selectedIndex).getCodigo();
         add.setTxtDesc(desc);
         add.setTxtNome(nome);
         add.setTxtPreco(preco);
@@ -206,10 +209,10 @@ public class telaProdutos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_EditBtnActionPerformed
 
-    private void ExcBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcBtn1ActionPerformed
+    private void ExcAttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcAttActionPerformed
         {
             attTela();
-      }    }//GEN-LAST:event_ExcBtn1ActionPerformed
+      }    }//GEN-LAST:event_ExcAttActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,8 +258,8 @@ public class telaProdutos extends javax.swing.JFrame {
     private javax.swing.JButton AddBtn;
     private javax.swing.JButton BtnVoltar1;
     private javax.swing.JButton EditBtn;
+    private javax.swing.JButton ExcAtt;
     private javax.swing.JButton ExcBtn;
-    private javax.swing.JButton ExcBtn1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelProd;
@@ -264,11 +267,11 @@ public class telaProdutos extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void attTela() {
-        lista = ProdutosController.Produtos();
+        produtos = ProdutosController.Produtos();
         DefaultTableModel model = (DefaultTableModel) tablePro.getModel();
         model.setRowCount(0);
-        for (int k = 0; k < lista.size(); k++) {
-            model.addRow(new Object[]{lista.get(k).getCodigo(), lista.get(k).getNome(), lista.get(k).getQuantidade(), lista.get(k).getDesc(), lista.get(k).getPreco()});
+        for (int k = 0; k < produtos.size(); k++) {
+            model.addRow(new Object[]{produtos.get(k).getCodigo(), produtos.get(k).getNome(), produtos.get(k).getQuantidade(), produtos.get(k).getDesc(), produtos.get(k).getPreco()});
             System.out.println(k);
         }
     }

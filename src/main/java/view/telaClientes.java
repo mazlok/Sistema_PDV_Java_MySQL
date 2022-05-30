@@ -1,6 +1,9 @@
 package view;
 
-
+import controller.ClientesController;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import models.Cliente;
 import view.telaPrincipal;
 
 /*
@@ -8,12 +11,13 @@ import view.telaPrincipal;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Bruna
  */
 public class telaClientes extends javax.swing.JFrame {
+
+    ArrayList<Cliente> clientes;
 
     /**
      * Creates new form telaClientes
@@ -21,7 +25,19 @@ public class telaClientes extends javax.swing.JFrame {
     public telaClientes() {
         initComponents();
         setLocationRelativeTo(null);
-        //setExtendedState(telaLogin.MAXIMIZED_BOTH);
+        clientes = ClientesController.Clientes();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        for (int i = 0; i < clientes.size(); i++) {
+            model.addRow(new Object[]{clientes.get(i).getId(),
+                clientes.get(i).getNome(),
+                clientes.get(i).getSexo(),
+                clientes.get(i).getCpf(),
+                clientes.get(i).getEmail(),
+                clientes.get(i).getTelefone(),
+                clientes.get(i).getEndereço(),
+                clientes.get(i).getEstadoCivil(),
+                clientes.get(i).getDataNasc()});
+        }
     }
 
     /**
@@ -40,6 +56,7 @@ public class telaClientes extends javax.swing.JFrame {
         BtnAdd = new javax.swing.JButton();
         BtnEdit = new javax.swing.JButton();
         BtnExc = new javax.swing.JButton();
+        BtnAtt = new javax.swing.JButton();
         BtnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -57,10 +74,7 @@ public class telaClientes extends javax.swing.JFrame {
         jTable1.setForeground(new java.awt.Color(51, 51, 51));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Nome", "Sexo", "CPF", "E-mail", "Telefone", "Endereço", "Estado CV", "Data de Nascimento"
@@ -84,6 +98,21 @@ public class telaClientes extends javax.swing.JFrame {
         BtnExc.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         BtnExc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgExcluir.png"))); // NOI18N
         BtnExc.setText("Excluir");
+        BtnExc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnExcActionPerformed(evt);
+            }
+        });
+
+        BtnAtt.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+        BtnAtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconAtualizar.png"))); // NOI18N
+        BtnAtt.setText("Excluir");
+        BtnAtt.setActionCommand("Atualizar");
+        BtnAtt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAttActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -97,13 +126,20 @@ public class telaClientes extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(87, 87, 87)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(BtnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnExc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 90, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BtnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(42, 42, 42)
+                                        .addComponent(BtnAdd))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(BtnExc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(BtnAtt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(0, 22, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,12 +150,14 @@ public class telaClientes extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
+                        .addGap(83, 83, 83)
                         .addComponent(BtnAdd)
-                        .addGap(52, 52, 52)
+                        .addGap(46, 46, 46)
                         .addComponent(BtnEdit)
-                        .addGap(44, 44, 44)
+                        .addGap(48, 48, 48)
                         .addComponent(BtnExc)
+                        .addGap(48, 48, 48)
+                        .addComponent(BtnAtt)
                         .addContainerGap())))
         );
 
@@ -135,13 +173,12 @@ public class telaClientes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BtnVoltar)
-                        .addGap(9, 9, 9)))
+                .addContainerGap(971, Short.MAX_VALUE)
+                .addComponent(BtnVoltar)
+                .addGap(15, 15, 15))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 993, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -169,6 +206,18 @@ public class telaClientes extends javax.swing.JFrame {
         telaAddCliente telaC = new telaAddCliente();
         telaC.setVisible(true);
     }//GEN-LAST:event_BtnAddActionPerformed
+
+    private void BtnAttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAttActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnAttActionPerformed
+
+    private void BtnExcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcActionPerformed
+        System.err.println("pressionou o botao");
+        int selectedIndex = jTable1.getSelectedRow();
+        ((DefaultTableModel) jTable1.getModel()).removeRow(selectedIndex);
+        int id = clientes.get(selectedIndex).getId();
+        ClientesController.Excluir(id);
+    }//GEN-LAST:event_BtnExcActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,6 +256,7 @@ public class telaClientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAdd;
+    private javax.swing.JButton BtnAtt;
     private javax.swing.JButton BtnEdit;
     private javax.swing.JButton BtnExc;
     private javax.swing.JButton BtnVoltar;
