@@ -94,6 +94,11 @@ public class telaClientes extends javax.swing.JFrame {
         BtnEdit.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgEditar.png"))); // NOI18N
         BtnEdit.setText("Editar");
+        BtnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEditActionPerformed(evt);
+            }
+        });
 
         BtnExc.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         BtnExc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgExcluir.png"))); // NOI18N
@@ -219,6 +224,21 @@ public class telaClientes extends javax.swing.JFrame {
         ClientesController.Excluir(id);
     }//GEN-LAST:event_BtnExcActionPerformed
 
+    private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
+       telaAltCliente telaC = new telaAltCliente();
+       int selectedIndex = jTable1.getSelectedRow();
+       telaC.setCBoxECivil(clientes.get(selectedIndex).getEstadoCivil());
+       telaC.setCBoxGenero(clientes.get(selectedIndex).getSexo());
+       telaC.setTxtCPF(clientes.get(selectedIndex).getCpf());
+       telaC.setTxtDataNasc(clientes.get(selectedIndex).getDataNasc().replace("-", ""));
+       telaC.setTxtEmail(clientes.get(selectedIndex).getEmail());
+       telaC.setTxtEnde(clientes.get(selectedIndex).getEndereço());
+       telaC.setTxtFone(clientes.get(selectedIndex).getTelefone());
+       telaC.setTxtNomeCliente(clientes.get(selectedIndex).getNome());
+       telaC.setVisible(true);
+       
+    }//GEN-LAST:event_BtnEditActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -265,4 +285,4 @@ public class telaClientes extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelProd;
     // End of variables declaration//GEN-END:variables
-}
+    }

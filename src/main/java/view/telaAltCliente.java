@@ -54,10 +54,6 @@ public class telaAltCliente extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         txtEnde = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        txtNum = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        CBoxEstado = new javax.swing.JComboBox<>();
         BtnAddCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -156,7 +152,7 @@ public class telaAltCliente extends javax.swing.JFrame {
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CBoxECivil, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,19 +181,9 @@ public class telaAltCliente extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Nirmala UI Semilight", 0, 14), new java.awt.Color(153, 153, 255))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
-        jLabel7.setText("Logradouro:");
+        jLabel7.setText("Endereço:");
 
         txtEnde.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
-
-        jLabel8.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
-        jLabel8.setText("Nº:");
-
-        jLabel9.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
-        jLabel9.setText("Estado:");
-
-        CBoxEstado.setBackground(new java.awt.Color(153, 153, 255));
-        CBoxEstado.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
-        CBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Selecione>", "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MT", "MS", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -207,29 +193,17 @@ public class telaAltCliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtEnde, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txtEnde)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtEnde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(CBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(txtEnde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         BtnAddCliente.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
@@ -246,11 +220,11 @@ public class telaAltCliente extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(343, 343, 343)
                 .addComponent(BtnAddCliente)
-                .addContainerGap(344, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,15 +264,6 @@ public class telaAltCliente extends javax.swing.JFrame {
         boolean validaEmail = false;
         boolean validaTel = false;
         boolean validaEnd = false;
-        
-        try {
-            int validaCampo = Integer.parseInt(txtNum.getText());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Digite um número para o endereço!");
-        }
-        finally{
-            this.txtNum.setText("");
-        }
         
         if (CPF==null || CPF.equals("") || CPF.equals("   .   .   -  ")) {
             txtCPF.setBackground(Color.red);
@@ -364,7 +329,6 @@ public class telaAltCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAddCliente;
     private javax.swing.JComboBox<String> CBoxECivil;
-    private javax.swing.JComboBox<String> CBoxEstado;
     private javax.swing.JComboBox<String> CBoxGenero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -374,8 +338,6 @@ public class telaAltCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JFormattedTextField txtCPF;
@@ -384,18 +346,9 @@ public class telaAltCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtEnde;
     private javax.swing.JTextField txtFone;
     private javax.swing.JTextField txtNomeCliente;
-    private javax.swing.JTextField txtNum;
     // End of variables declaration//GEN-END:variables
-public void setTxtNome(String nome){
-        
-    }
-
     public void setCBoxECivil(String eCivil) {
         this.CBoxECivil.setSelectedItem(eCivil);
-    }
-
-    public void setCBoxEstado(String estado) {
-        this.CBoxEstado.setSelectedItem(estado);
     }
 
     public void setCBoxGenero(String genero) {
@@ -424,9 +377,5 @@ public void setTxtNome(String nome){
 
     public void setTxtNomeCliente(String nomeCliente) {
         this.txtNomeCliente.setText(nomeCliente);
-    }
-
-    public void setTxtNum(String num) {
-        this.txtNum.setText(num);
     }
 }

@@ -9,9 +9,9 @@ insert into vendedor (nm_vendedor, usuario, senha) values
 ('Ramon Pinheiro', 'ramon.p', '123');
 
 insert into cliente (nm_cliente, genero, email, endereco, estadoCivil, dataNasc, cpf, telefone) values 
-('Marjorie Fabro', 'FEM', 'marjorie@gmail.com', 'R Augusta, 124', 'Solteira', '2000/01/01', '999.999.999-99', '11999999999'),
-('Alex Silva', 'MASC', 'alex@gmail.com', 'Av Liberdade 12', 'Casado', '1968/01/01', '141.141.141-14', '11914141414'),
-('Rafaela Reis', 'FEM', 'rafaela@gmail.com', 'R Conselheiro Ramalho 873', 'Solteira', '1996/01/01', '123.123.123-12', '11912312312');
+('Marjorie Fabro', 'F', 'marjorie@gmail.com', 'R Augusta, 124', 'Solteiro(a)', '2000/01/01', '999.999.999-99', '11999999999'),
+('Alex Silva', 'M', 'alex@gmail.com', 'Av Liberdade 12', 'Casado(a)', '1968/01/01', '141.141.141-14', '11914141414'),
+('Rafaela Reis', 'F', 'rafaela@gmail.com', 'R Conselheiro Ramalho 873', 'Solteira(a)', '1996/01/01', '123.123.123-12', '11912312312');
 
 insert into produto (nm_produto, preco, estoque, descricao) values 
 ('Mouse Logitech G703', 600, 150, 'SEM FIO LIGHTSPEED RGB LIGHTSYNC'),
