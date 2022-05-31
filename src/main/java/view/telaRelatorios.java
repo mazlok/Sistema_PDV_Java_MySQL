@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import models.Pedido;
 import models.RelSintetico;
 import models.Vendedor;
 
@@ -15,7 +16,7 @@ import models.Vendedor;
  */
 public class telaRelatorios extends javax.swing.JFrame {
 
-    ArrayList<RelSintetico> relatorio;
+    ArrayList<Pedido> relatorio;
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
     public telaRelatorios() {
@@ -57,7 +58,7 @@ public class telaRelatorios extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Cliente", "Total", "Data"
+                "Código", "Cliente", "Vendedor", "Total", "Data"
             }
         ));
         jScrollPane1.setViewportView(tableRel);
@@ -234,10 +235,11 @@ public class telaRelatorios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        relatorio = PedidosController.Pedidos(Vendedor.getInstance().getCd_vendedor(), jFormattedTextField1.getText().replace("/", "-"), jFormattedTextField2.getText().replace("/", "-"));
         DefaultTableModel model = (DefaultTableModel) tableRel.getModel();
+        model.setRowCount(0);
+        relatorio = PedidosController.Pedidos(jFormattedTextField1.getText().replace("/", ""),jFormattedTextField2.getText().replace("/", ""));
         for (int i = 0; i < relatorio.size(); i++) {
-            model.addRow(new Object[]{relatorio.get(i).getCd_pedido(), relatorio.get(i).getNm_cliente(), relatorio.get(i).getTotal(), relatorio.get(i).getDataVenda()});
+            model.addRow(new Object[]{relatorio.get(i).getCd_pedido(), relatorio.get(i).getCd_cliente(), relatorio.get(i).getCd_vendedor(), relatorio.get(i).getTotal(), relatorio.get(i).getData()});
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

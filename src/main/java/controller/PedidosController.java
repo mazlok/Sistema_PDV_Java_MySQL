@@ -24,17 +24,17 @@ public class PedidosController {
         return PedidosDAO.vendasPorVendedor(vendedor);
     }
     
-    public static int criarPedido(int cd_vendedor, int cd_cliente){
-        return PedidosDAO.criarPedido(cd_vendedor, cd_cliente);
+    public static int criarPedido(int cd_vendedor, int cd_cliente, float total){
+        return PedidosDAO.criarPedido(cd_vendedor, cd_cliente, total);
     }
     
     public static void requisitarProduto(int cd_produto, int cd_pedido, int quantidade) {
         PedidosDAO.requisitarProduto(cd_produto, cd_pedido, quantidade);
     }
     
-    public static ArrayList<RelSintetico> Pedidos(int cd_vendedor, String dataMin, String dataMax ){
+    public static ArrayList<Pedido> Pedidos(String dataMin, String dataMax){
         System.out.println("entrou");
-      return PedidosDAO.consultarPedido(cd_vendedor, dataMin, dataMax );
+      return PedidosDAO.consultarPedido(dataMin, dataMax);
     }
     
     public static ArrayList<RelAnalitico> Analiticos(int cd_pedido){

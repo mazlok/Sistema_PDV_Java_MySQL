@@ -39,7 +39,8 @@ CREATE TABLE pedido (
         REFERENCES vendedor (cd_vendedor),
 	CONSTRAINT fk_cd_cliente FOREIGN KEY (cd_cliente)
 		REFERENCES cliente (cd_cliente),
-    dataVenda date not null
+    dataVenda date not null,
+    total float not null
 );
 
 -- Criação tabela pedido_detalhe ainda em teste pra alteração em proc

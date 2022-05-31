@@ -11,7 +11,15 @@ package models;
 */
 
 public class Pedido {
-   int cd_pedido, cd_cliente, cd_vendedor;
+   int cd_pedido, cd_cliente, cd_vendedor, total;
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
    String data;
 
     public Pedido() {

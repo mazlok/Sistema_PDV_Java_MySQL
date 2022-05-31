@@ -535,7 +535,7 @@ public class telaVenda extends javax.swing.JFrame {
         if (model.getRowCount() > 0) {
             String nomeCliente = jComboBoxCliente.getSelectedItem().toString();
             Cliente clienteSelecionado = ClientesController.Filtar(nomeCliente).get(0);
-            int k = PedidosController.criarPedido(Vendedor.getInstance().getCd_vendedor(), clienteSelecionado.getId());
+            int k = PedidosController.criarPedido(Vendedor.getInstance().getCd_vendedor(), clienteSelecionado.getId(), total);
             for (int i = 0; i < listaDeCompras.size(); i++) {
                 Produto p = listaDeCompras.get(i);
                     ArrayList<Produto> prod = ProdutosController.Filtar(String.valueOf(p.getCodigo()));

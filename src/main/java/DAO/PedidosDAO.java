@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import models.Pedido;
 import models.RelAnalitico;
 import models.RelSintetico;
 
@@ -66,15 +67,16 @@ public class PedidosDAO {
      *
      * @param cd_vendedor objeto do tipo Integer
      * @param cd_cliente objeto do tipo Integer
+     * @param total
      * @return int -1: falha
      */
-    public static int criarPedido(int cd_vendedor, int cd_cliente) {
+    public static int criarPedido(int cd_vendedor, int cd_cliente, float total) {
         int codPedido = -1;
         try {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
-            int linhas = instrucaoSQL.executeUpdate("insert into pedido (cd_vendedor, cd_cliente, dataVenda) values ( " + cd_vendedor + ", " + cd_cliente + ", current_date);");
+            int linhas = instrucaoSQL.executeUpdate("insert into pedido (cd_vendedor, cd_cliente, total, dataVenda) values ( " + cd_vendedor + ", " + cd_cliente + ", " + total+ ", current_date);");
             if (linhas == 1) {
                 codPedido = codigoDoUltimoPedido(cd_vendedor, cd_cliente);
             }
@@ -173,26 +175,21 @@ public class PedidosDAO {
      * @return ArrayList<RelSintetico>
      *
      */
-    public static ArrayList<RelSintetico> consultarPedido(int cd_vendedor, String dataMin, String dataMax) {
-        ArrayList<RelSintetico> listaRetorno = new ArrayList<>();
+    public static ArrayList<Pedido> consultarPedido(String dataMin, String dataMax) {
+        ArrayList<Pedido> listaRetorno = new ArrayList<>();
         try {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
-            CallableStatement cstmt = conexao.prepareCall("CALL p_RelSintetico(?, ?, ?);");
-            System.out.println(cstmt);
-            cstmt.setInt(1, cd_vendedor);
-            cstmt.setString(2, dataMin);
-            cstmt.setString(3, dataMax);
-            System.out.println(cstmt);
-            rs = cstmt.executeQuery();
+            Statement instrucaoSQL = conexao.createStatement();
+            rs = instrucaoSQL.executeQuery("select * from pedido where dataVenda between '"+dataMin+"' AND '"+dataMax+"';");
             if (rs != null) {
                 while (rs.next()) {
-                    System.out.println("DAO.PedidosDAO.consultarPedido()");
-                    RelSintetico c = new RelSintetico();
+                    Pedido c = new Pedido();
+                    c.setCd_cliente(rs.getInt("cd_cliente"));
                     c.setCd_pedido(rs.getInt("cd_pedido"));
+                    c.setCd_vendedor(rs.getInt("cd_vendedor"));
+                    c.setData(rs.getString("dataVenda"));
                     c.setTotal(rs.getInt("total"));
-                    c.setNm_cliente(rs.getString("nm_cliente"));
-                    c.setDataVenda(rs.getString("dataVenda"));
                     listaRetorno.add(c);
                 }
             } else {
