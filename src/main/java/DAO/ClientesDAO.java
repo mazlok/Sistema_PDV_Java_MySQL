@@ -75,9 +75,7 @@ public class ClientesDAO {
             int linhas = 0;
             if (checkList.isEmpty()) {
                 linhas = instrucaoSQL.executeUpdate("insert into cliente (nm_cliente, genero, email, endereco, dataNasc, cpf, telefone, estadoCivil) values ('" + nome + "', '" + sexo + "', '" + email + "', '" + endereco + "', " + dataNasc + ", '" + cpf + "','" + telefone + "', '" + estadoCivil + "');");
-                System.out.println(linhas);
             }
-            System.out.println(linhas);
         } catch (SQLException e) {
         } catch (ClassNotFoundException ex) {
         } finally {
@@ -104,7 +102,6 @@ public class ClientesDAO {
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
             int linhas = instrucaoSQL.executeUpdate("DELETE FROM cliente where cd_cliente = " + id + ";");
-            System.out.println(linhas);
         } catch (SQLException e) {
         } catch (ClassNotFoundException ex) {
         } finally {
@@ -131,7 +128,6 @@ public class ClientesDAO {
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
             int linhas = instrucaoSQL.executeUpdate("update cliente set nm_cliente = '" + nome + "',genero  = '" + sexo + "',email = '" + email + "',endereco = '" + endereco + "', estadoCivil = '" + estadoCivil + "',  dataNasc = " + dataNasc + ", cpf = '" + cpf + "', telefone = '" + telefone + "' where cd_cliente = " + id + ";");
-            System.out.println(linhas);
         } catch (SQLException e) {
         } catch (ClassNotFoundException ex) {
         } finally {
@@ -159,6 +155,46 @@ public class ClientesDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
+            rs = instrucaoSQL.executeQuery("SELECT * FROM cliente where nm_cliente = '" + filtro + "';");
+            if (rs != null) {
+                while (rs.next()) {
+                    Cliente c = new Cliente();
+                    c.setId(rs.getInt("cd_cliente"));
+                    c.setCpf(rs.getString("cpf"));
+                    c.setDataNasc(rs.getString("dataNasc"));
+                    c.setEmail(rs.getString("email"));
+                    c.setEndereço(rs.getString("endereco"));
+                    c.setEstadoCivil(rs.getString("estadoCivil"));
+                    c.setNome(rs.getString("nm_cliente"));
+                    c.setSexo(rs.getString("genero"));
+                    c.setTelefone(rs.getString("telefone"));
+                    listaRetorno.add(c);
+                    cont++;
+                }
+                if (cont >= 1) {
+                    return listaRetorno;
+                }
+            }
+            rs = instrucaoSQL.executeQuery("SELECT * FROM cliente where cpf = '" + filtro + "';");
+            if (rs != null) {
+                while (rs.next()) {
+                    Cliente c = new Cliente();
+                    c.setId(rs.getInt("cd_cliente"));
+                    c.setCpf(rs.getString("cpf"));
+                    c.setDataNasc(rs.getString("dataNasc"));
+                    c.setEmail(rs.getString("email"));
+                    c.setEndereço(rs.getString("endereco"));
+                    c.setEstadoCivil(rs.getString("estadoCivil"));
+                    c.setNome(rs.getString("nm_cliente"));
+                    c.setSexo(rs.getString("genero"));
+                    c.setTelefone(rs.getString("telefone"));
+                    listaRetorno.add(c);
+                    cont++;
+                }
+                if (cont >= 1) {
+                    return listaRetorno;
+                }
+            }
             rs = instrucaoSQL.executeQuery("SELECT * FROM cliente where cpf like '%" + filtro + "';");
             if (rs != null) {
                 while (rs.next()) {
@@ -199,26 +235,7 @@ public class ClientesDAO {
                     return listaRetorno;
                 }
             }
-            rs = instrucaoSQL.executeQuery("SELECT * FROM cliente where cpf = '" + filtro + "';");
-            if (rs != null) {
-                while (rs.next()) {
-                    Cliente c = new Cliente();
-                    c.setId(rs.getInt("cd_cliente"));
-                    c.setCpf(rs.getString("cpf"));
-                    c.setDataNasc(rs.getString("dataNasc"));
-                    c.setEmail(rs.getString("email"));
-                    c.setEndereço(rs.getString("endereco"));
-                    c.setEstadoCivil(rs.getString("estadoCivil"));
-                    c.setNome(rs.getString("nm_cliente"));
-                    c.setSexo(rs.getString("genero"));
-                    c.setTelefone(rs.getString("telefone"));
-                    listaRetorno.add(c);
-                    cont++;
-                }
-                if (cont >= 1) {
-                    return listaRetorno;
-                }
-            }
+            
             rs = instrucaoSQL.executeQuery("SELECT * FROM cliente where nm_cliente like '" + filtro + "%';");
             if (rs != null) {
                 while (rs.next()) {
@@ -240,26 +257,6 @@ public class ClientesDAO {
                 }
             }
             rs = instrucaoSQL.executeQuery("SELECT * FROM cliente where nm_cliente like '%" + filtro + "';");
-            if (rs != null) {
-                while (rs.next()) {
-                    Cliente c = new Cliente();
-                    c.setId(rs.getInt("cd_cliente"));
-                    c.setCpf(rs.getString("cpf"));
-                    c.setDataNasc(rs.getString("dataNasc"));
-                    c.setEmail(rs.getString("email"));
-                    c.setEndereço(rs.getString("endereco"));
-                    c.setEstadoCivil(rs.getString("estadoCivil"));
-                    c.setNome(rs.getString("nm_cliente"));
-                    c.setSexo(rs.getString("genero"));
-                    c.setTelefone(rs.getString("telefone"));
-                    listaRetorno.add(c);
-                    cont++;
-                }
-                if (cont >= 1) {
-                    return listaRetorno;
-                }
-            }
-            rs = instrucaoSQL.executeQuery("SELECT * FROM cliente where nm_cliente = '" + filtro + "';");
             if (rs != null) {
                 while (rs.next()) {
                     Cliente c = new Cliente();

@@ -27,4 +27,8 @@ public class ProdutosController {
     public static ArrayList<Produto> Filtar(String filtro){
         return ProdutosDAO.filtrarProdutos(filtro);
     }
+    public static void setEstoque(int id, int quant) {
+        ProdutosDAO.setEstoque(id, quant);
+    }
+
 }

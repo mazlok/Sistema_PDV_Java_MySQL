@@ -20,8 +20,10 @@ insert into produto (nm_produto, preco, estoque, descricao) values
 ('Gabinete Gamer', 349, 20, 'Branco RGB'),
 ('Cooler RGB', 239, 65, 'Tamanho 140 mm x 25 mm');
 
-insert into pedido (cd_produto, cd_vendedor, cd_cliente, quantidade, dataVenda) values
-(1, 2, 2, 5, '2022-05-25');
+insert into pedido (cd_vendedor, cd_cliente, dataVenda) values
+(1, 2, '2022-05-25');
+
+insert into pedido_detalhe (cd_produto, cd_pedido, quantidade) values (1, 1, 5);
 
 select * from vendedor where cd_vendedor = 2;
 select * from cliente;
