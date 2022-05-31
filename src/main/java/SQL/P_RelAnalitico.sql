@@ -11,4 +11,4 @@ JOIN pedido pd on pdd.cd_pedido = pd.cd_pedido
 JOIN produto p on pdd.cd_produto = p.cd_produto
 where pdd.cd_pedido = pedido;
 
-CALL p_RelAnalitico();
+CALL p_RelAnalitico(1);

@@ -8,7 +8,7 @@ import controller.PedidosController;
 
 /**
  *
- * @author Bruna
+ * @author Bruna Gomes
  */
 public class telaPrincipal extends javax.swing.JFrame {
 
@@ -20,7 +20,6 @@ public class telaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         lblVendedor.setText(Vendedor.getInstance().getUsuario());
         jLabel4.setText(String.valueOf(PedidosController.vendasPorVendedor(String.valueOf(Vendedor.getInstance().getCd_vendedor()))));
-        
     }
 
     /**

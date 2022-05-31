@@ -8,6 +8,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import models.Cliente;
 
+/**
+ *
+ * @author Alexandre Machado
+ * @see controller.ClientesController
+ */
 public class ClientesDAO {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver"; //Driver do Mysql 8.0
@@ -18,10 +23,14 @@ public class ClientesDAO {
     private static ResultSet rs;
     private static Statement instrucaoSQL;
 
+    /**
+     *
+     *
+     * @return ArrayList<Cliente>
+     */
     public static ArrayList<Cliente> consultarClientes() {
         ArrayList<Cliente> listaRetorno = new ArrayList<>();
         try {
-//Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
@@ -43,13 +52,9 @@ public class ClientesDAO {
             } else {
                 throw new SQLException();
             }
-        } catch (SQLException e) {
-            listaRetorno = null;
-        } catch (ClassNotFoundException ex) {
-
+        } catch (SQLException | ClassNotFoundException e) {
             listaRetorno = null;
         } finally {
-//Libero os recursos usados
             try {
                 if (rs != null) {
                     rs.close();
@@ -66,6 +71,18 @@ public class ClientesDAO {
         return listaRetorno;
     } //fim do método consultarClientes
 
+    /**
+     *
+     * @param cpf objeto do tipo String
+     * @param dataNasc objeto do tipo String
+     * @param email objeto do tipo String
+     * @param endereco objeto do tipo String
+     * @param estadoCivil objeto do tipo String
+     * @param nome objeto do tipo String
+     * @param sexo objeto do tipo String
+     * @param telefone objeto do tipo String
+     *
+     */
     public static void adicionarClientes(String cpf, String dataNasc, String email, String endereco, String estadoCivil, String nome, String sexo, String telefone) {
         try {
             Class.forName(DRIVER);
@@ -76,10 +93,8 @@ public class ClientesDAO {
             if (checkList.isEmpty()) {
                 linhas = instrucaoSQL.executeUpdate("insert into cliente (nm_cliente, genero, email, endereco, dataNasc, cpf, telefone, estadoCivil) values ('" + nome + "', '" + sexo + "', '" + email + "', '" + endereco + "', " + dataNasc + ", '" + cpf + "','" + telefone + "', '" + estadoCivil + "');");
             }
-        } catch (SQLException e) {
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException e) {
         } finally {
-//Libero os recursos usados
             try {
                 if (rs != null) {
                     rs.close();
@@ -95,17 +110,19 @@ public class ClientesDAO {
         }
     }//fim do método adicionarClientes
 
+    /**
+     *
+     * @param id objeto do tipo Integer
+     *
+     */
     public static void excluirClientes(int id) {
         try {
-//Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
             int linhas = instrucaoSQL.executeUpdate("DELETE FROM cliente where cd_cliente = " + id + ";");
-        } catch (SQLException e) {
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException e) {
         } finally {
-//Libero os recursos usados
             try {
                 if (rs != null) {
                     rs.close();
@@ -121,17 +138,27 @@ public class ClientesDAO {
         }
     }//fim do método excluirClientes
 
+    /**
+     *
+     * @param id objeto do tipo Integer
+     * @param cpf objeto do tipo String
+     * @param dataNasc objeto do tipo String
+     * @param email objeto do tipo String
+     * @param endereco objeto do tipo String
+     * @param estadoCivil objeto do tipo String
+     * @param nome objeto do tipo String
+     * @param sexo objeto do tipo String
+     * @param telefone objeto do tipo String
+     *
+     */
     public static void alterarClientes(int id, String cpf, String dataNasc, String email, String endereco, String estadoCivil, String nome, String sexo, String telefone) {
         try {
-            //Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
             int linhas = instrucaoSQL.executeUpdate("update cliente set nm_cliente = '" + nome + "',genero  = '" + sexo + "',email = '" + email + "',endereco = '" + endereco + "', estadoCivil = '" + estadoCivil + "',  dataNasc = " + dataNasc + ", cpf = '" + cpf + "', telefone = '" + telefone + "' where cd_cliente = " + id + ";");
-        } catch (SQLException e) {
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException e) {
         } finally {
-//Libero os recursos usados
             try {
                 if (rs != null) {
                     rs.close();
@@ -147,11 +174,15 @@ public class ClientesDAO {
         }
     }//fim do método alterarClientes
 
+    /**
+     *
+     * @param filtro objeto do tipo String
+     * @return ArrayList<Cliente> 
+     */
     public static ArrayList<Cliente> filtrarClientes(String filtro) {
         ArrayList<Cliente> listaRetorno = new ArrayList<>();
         int cont = 0;
         try {
-            //Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
@@ -235,7 +266,7 @@ public class ClientesDAO {
                     return listaRetorno;
                 }
             }
-            
+
             rs = instrucaoSQL.executeQuery("SELECT * FROM cliente where nm_cliente like '" + filtro + "%';");
             if (rs != null) {
                 while (rs.next()) {
@@ -276,10 +307,8 @@ public class ClientesDAO {
                     return listaRetorno;
                 }
             }
-        } catch (SQLException e) {
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException e) {
         } finally {
-//Libero os recursos usados
             try {
                 if (rs != null) {
                     rs.close();

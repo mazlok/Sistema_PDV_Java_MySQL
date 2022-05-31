@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author alexandre.dmachado2
+ * @author William Mazotti
  */
 public class telaAltProduto extends javax.swing.JFrame {
     private int id;

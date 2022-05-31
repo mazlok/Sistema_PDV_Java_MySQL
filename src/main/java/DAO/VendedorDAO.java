@@ -8,10 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import models.Produto;
 import models.Vendedor;
+
 /**
- *
- * @author alexa
- */
+*
+* @author Alexandre Machado
+* @see controller.VendedorController
+*/
+
 public class VendedorDAO {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver"; //Driver do Mysql 8.0
@@ -22,10 +25,14 @@ public class VendedorDAO {
     private static ResultSet rs;
     private static Statement instrucaoSQL;
 
+    /**
+     *
+     * @param usuario objeto do tipo String
+     * 
+     */
     
     public static void login(String usuario) {
         try {
-//Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
@@ -40,10 +47,8 @@ public class VendedorDAO {
             } else {
                 throw new SQLException();
             }
-        } catch (SQLException e) {
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException e) {
         } finally {
-//Libero os recursos usados
             try {
                 if (rs != null) {
                     rs.close();
@@ -58,4 +63,4 @@ public class VendedorDAO {
             }
         }
     } //fim do método consultarClientes
-}
+}// fim da classe VendedorDAO

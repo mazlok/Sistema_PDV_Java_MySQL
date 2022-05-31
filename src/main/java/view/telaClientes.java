@@ -3,15 +3,11 @@ package view;
 import controller.ClientesController;
 import controller.ProdutosController;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Cliente;
 import view.telaPrincipal;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Bruna
@@ -245,6 +241,7 @@ public class telaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnExcActionPerformed
 
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
+        if (jTable1.getSelectedRow() != -1) {
         telaAltCliente telaC = new telaAltCliente();
         int selectedIndex = jTable1.getSelectedRow();
         telaC.setCBoxECivil(clientes.get(selectedIndex).getEstadoCivil());
@@ -257,6 +254,10 @@ public class telaClientes extends javax.swing.JFrame {
         telaC.setTxtNomeCliente(clientes.get(selectedIndex).getNome());
         telaC.setId(clientes.get(selectedIndex).getId());
         telaC.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Escolha uma linha primeiro");
+
+        }
 
     }//GEN-LAST:event_BtnEditActionPerformed
 

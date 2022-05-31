@@ -6,9 +6,10 @@ import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
 
 /**
- *
- * @author alexa
- */
+*
+* @author Alexandre Machado
+* 
+*/
 public class ProdutosComboBoxModel extends AbstractListModel implements ComboBoxModel {
 
     List<Produto> produtos;

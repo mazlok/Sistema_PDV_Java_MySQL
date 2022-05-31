@@ -7,9 +7,11 @@ package controller;
 import DAO.VendedorDAO;
 
 /**
- *
- * @author alexa
- */
+*
+* @author Alexandre Machado
+* @see DAO.VendedorDAO, models.Vendedor;
+*/
+
 public class VendedorController {
     public static void Login(String login) {
         VendedorDAO.login(login);

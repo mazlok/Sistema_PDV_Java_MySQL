@@ -6,7 +6,12 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import models.Produto;
 import controller.ProdutosController;
+import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author Wellerson Matheus
+ */
 public class telaProdutos extends javax.swing.JFrame {
 
     ArrayList<Produto> produtos;
@@ -214,6 +219,7 @@ public class telaProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_ExcBtnActionPerformed
 
     private void EditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditBtnActionPerformed
+        if (tablePro.getSelectedRow() != -1) {
         telaAltProduto add = new telaAltProduto();
         int selectedIndex = tablePro.getSelectedRow();
         String nome = produtos.get(selectedIndex).getNome();
@@ -227,6 +233,10 @@ public class telaProdutos extends javax.swing.JFrame {
         add.setTxtQuant(quant);
         add.setId(id);
         add.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Escolha uma linha primeiro");
+
+        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_EditBtnActionPerformed

@@ -1,22 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAO;
 
-import controller.ProdutosController;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import models.Pedido;
-import models.Produto;
+import models.RelAnalitico;
+import models.RelSintetico;
 
 /**
  *
- * @author alexa
+ * @author Alexandre Machado
+ * @see controller.PedidosController
  */
 public class PedidosDAO {
 
@@ -28,24 +25,27 @@ public class PedidosDAO {
     private static ResultSet rs;
     private static Statement instrucaoSQL;
 
+    /**
+     *
+     * @param vendedor objeto do tipo String
+     * @return int
+     */
     public static int vendasPorVendedor(String vendedor) {
         try {
-            //Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
             rs = instrucaoSQL.executeQuery("SELECT COUNT(*) FROM pedido where cd_vendedor = '" + vendedor + "' ;");
             if (rs != null) {
                 while (rs.next()) {
+                    System.out.println("DAO.PedidosDAO.vendasPorVendedor()");
                     return rs.getInt("count(*)");
                 }
             } else {
                 throw new SQLException();
             }
-        } catch (SQLException e) {
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException e) {
         } finally {
-            //Libero os recursos usados
             try {
                 if (rs != null) {
                     rs.close();
@@ -62,10 +62,15 @@ public class PedidosDAO {
         return 0;
     } //fim do método consultarClientes
 
+    /**
+     *
+     * @param cd_vendedor objeto do tipo Integer
+     * @param cd_cliente objeto do tipo Integer
+     * @return int -1: falha
+     */
     public static int criarPedido(int cd_vendedor, int cd_cliente) {
         int codPedido = -1;
         try {
-//Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
@@ -73,10 +78,8 @@ public class PedidosDAO {
             if (linhas == 1) {
                 codPedido = codigoDoUltimoPedido(cd_vendedor, cd_cliente);
             }
-        } catch (SQLException e) {
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException e) {
         } finally {
-//Libero os recursos usados
             try {
                 if (rs != null) {
                     rs.close();
@@ -93,17 +96,21 @@ public class PedidosDAO {
         return codPedido;
     }//fim do método criarPedido
 
+    /**
+     *
+     * @param cd_produto objeto do tipo Integer
+     * @param cd_pedido objeto do tipo Integer
+     * @param quantidade objeto do tipo Integer
+     *
+     */
     public static void requisitarProduto(int cd_produto, int cd_pedido, int quantidade) {
         try {
-//Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
             int linhas = instrucaoSQL.executeUpdate("insert into pedido_detalhe (cd_produto, cd_pedido, quantidade) values (" + cd_produto + ", " + cd_pedido + ", " + quantidade + ");");
-        } catch (SQLException e) {
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException e) {
         } finally {
-//Libero os recursos usados
             try {
                 if (rs != null) {
                     rs.close();
@@ -118,15 +125,21 @@ public class PedidosDAO {
             }
         }
     }//fim do método criarPedido
-    
+
+    /**
+     *
+     * @param cd_vendedor objeto do tipo Integer
+     * @param cd_cliente objeto do tipo Integer
+     * @return int 0: falha
+     *
+     */
     public static int codigoDoUltimoPedido(int cd_vendedor, int cd_cliente) {
         try {
-            //Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement instrucaoSQL = conexao.createStatement();
-            rs = instrucaoSQL.executeQuery("SELECT cd_pedido FROM pedido where cd_vendedor = "+cd_vendedor+" AND cd_cliente = "+cd_cliente+" ORDER BY cd_pedido DESC LIMIT 1;");
-            
+            rs = instrucaoSQL.executeQuery("SELECT cd_pedido FROM pedido where cd_vendedor = " + cd_vendedor + " AND cd_cliente = " + cd_cliente + " ORDER BY cd_pedido DESC LIMIT 1;");
+
             if (rs != null) {
                 while (rs.next()) {
                     return rs.getInt("cd_pedido");
@@ -134,10 +147,8 @@ public class PedidosDAO {
             } else {
                 throw new SQLException();
             }
-        } catch (SQLException e) {
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException e) {
         } finally {
-            //Libero os recursos usados
             try {
                 if (rs != null) {
                     rs.close();
@@ -153,34 +164,43 @@ public class PedidosDAO {
         }
         return 0;
     } //fim do método consultarClientes
-    
-    public static ArrayList<Pedido> consultarPedido() {
-        ArrayList<Pedido> listaRetorno = new ArrayList<>();
+
+    /**
+     *
+     * @param cd_vendedor objeto do tipo Integer
+     * @param dataMin objeto do tipo Integer
+     * @param dataMax objeto do tipo String
+     * @return ArrayList<RelSintetico>
+     *
+     */
+    public static ArrayList<RelSintetico> consultarPedido(int cd_vendedor, String dataMin, String dataMax) {
+        ArrayList<RelSintetico> listaRetorno = new ArrayList<>();
         try {
-//Carrego o driver para acesso ao banco
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
-            Statement instrucaoSQL = conexao.createStatement();
-            rs = instrucaoSQL.executeQuery("SELECT * FROM pedido;");
+            CallableStatement cstmt = conexao.prepareCall("CALL p_RelSintetico(?, ?, ?);");
+            System.out.println(cstmt);
+            cstmt.setInt(1, cd_vendedor);
+            cstmt.setString(2, dataMin);
+            cstmt.setString(3, dataMax);
+            System.out.println(cstmt);
+            rs = cstmt.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
-                    Pedido c = new Pedido();
+                    System.out.println("DAO.PedidosDAO.consultarPedido()");
+                    RelSintetico c = new RelSintetico();
                     c.setCd_pedido(rs.getInt("cd_pedido"));
-                    c.setCd_vendedor(rs.getInt("cd_vendedor"));
-                    c.setCd_cliente(rs.getInt("cd_cliente"));
-                    c.setData(rs.getString("data"));                   
+                    c.setTotal(rs.getInt("total"));
+                    c.setNm_cliente(rs.getString("nm_cliente"));
+                    c.setDataVenda(rs.getString("dataVenda"));
                     listaRetorno.add(c);
                 }
             } else {
                 throw new SQLException();
             }
-        } catch (SQLException e) {
-            listaRetorno = null;
-        } catch (ClassNotFoundException ex) {
-
+        } catch (SQLException | ClassNotFoundException e) {
             listaRetorno = null;
         } finally {
-//Libero os recursos usados
             try {
                 if (rs != null) {
                     rs.close();
@@ -196,4 +216,50 @@ public class PedidosDAO {
         }
         return listaRetorno;
     } //fim do método consultarPedidos
-}
+
+    /**
+     *
+     * @param cd_pedido  objeto do tipo Integer
+     * @return ArrayList<RelAnalitico>
+     *
+     */
+    public static ArrayList<RelAnalitico> consultarPedidoDetalhado(int cd_pedido) {
+        ArrayList<RelAnalitico> listaRetorno = new ArrayList<>();
+        try {
+            Class.forName(DRIVER);
+            conexao = DriverManager.getConnection(url, LOGIN, SENHA);
+            CallableStatement cstmt = conexao.prepareCall("CALL p_RelAnalitico(?);");
+            System.out.println(cstmt);
+            cstmt.setInt(1, cd_pedido);
+            System.out.println(cstmt);
+            rs = cstmt.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    System.out.println("DAO.PedidosDAO.consultarPedido()");
+                    RelAnalitico c = new RelAnalitico();
+                    c.setQuantidade(rs.getInt("quantidade"));
+                    c.setNm_produto(rs.getString("nm_produto"));
+                    listaRetorno.add(c);
+                }
+            } else {
+                throw new SQLException();
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            listaRetorno = null;
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (SQLException ex) {
+            }
+        }
+        return listaRetorno;
+    } //fim do método consultarPedidos
+} // fim da classe PedidosDAO

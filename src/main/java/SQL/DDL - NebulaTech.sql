@@ -1,6 +1,5 @@
 -- create database nebulatech; 
 -- use nebulatech;
-
 -- Criação tabela cliente
 CREATE TABLE cliente (
 	cd_cliente int not null primary key auto_increment,

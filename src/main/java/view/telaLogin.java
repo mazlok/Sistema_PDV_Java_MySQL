@@ -8,7 +8,10 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import models.Vendedor;
-
+/**
+ *
+ * @author Lucas Oliveira
+ */
 public class telaLogin extends javax.swing.JFrame {
 
     ProdutosDAO cc = new ProdutosDAO();

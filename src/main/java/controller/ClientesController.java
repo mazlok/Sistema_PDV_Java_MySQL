@@ -9,9 +9,11 @@ import DAO.ClientesDAO;
 import java.util.ArrayList;
 
 /**
- *
- * @author alexandre
- */
+*
+* @author Alexandre Machado
+* @see DAO.ClientesDAO, models.Cliente;
+*/
+
 public class ClientesController {
 
     public static void Inserir(String cpf, String dataNasc, String email, String endereco, String estadoCivil, String nome, String sexo, String telefone) {

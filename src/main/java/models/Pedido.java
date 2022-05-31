@@ -5,9 +5,11 @@
 package models;
 
 /**
- *
- * @author alexa
- */
+*
+* @author Bruna Gomes
+* 
+*/
+
 public class Pedido {
    int cd_pedido, cd_cliente, cd_vendedor;
    String data;

@@ -1,8 +1,19 @@
 package models;
+
 public class Vendedor {
+
     
     private String nome, usuario, senha;
-    private int cd_vendedor ;
+    private int cd_vendedor;
+
+    private static Vendedor instance;
+
+    public static synchronized Vendedor getInstance() {
+        if (instance == null) {
+            instance = new Vendedor();
+        }
+        return instance;
+    }
 
     public int getCd_vendedor() {
         return cd_vendedor;
@@ -11,16 +22,7 @@ public class Vendedor {
     public void setCd_vendedor(int cd_vendedor) {
         this.cd_vendedor = cd_vendedor;
     }
-    
-    private static Vendedor instance;
-    
-    public static synchronized Vendedor getInstance(){
-        if(instance == null){
-            instance = new Vendedor();
-        }
-        return instance;
-    }
-    
+
     public String getUsuario() {
         return usuario;
     }
@@ -45,5 +47,4 @@ public class Vendedor {
         this.nome = nome;
     }
 
-    
 }

@@ -4,9 +4,11 @@ import models.Produto;
 import DAO.ProdutosDAO;
 import java.util.ArrayList;
 /**
- *
- * @author alexandre
- */
+*
+* @author Alexandre Machado
+* @see DAO.ProdutosDAO, models.Produto;
+*/
+
 public class ProdutosController {
     
     public static void Inserir(String nome, String desc, float preco,int quant ){

@@ -1,4 +1,11 @@
 package models;
+
+/**
+*
+* @author Bruna Gomes
+* 
+*/
+
 public class Produto {
     
     String nome, desc;
