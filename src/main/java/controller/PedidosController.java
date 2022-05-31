@@ -5,7 +5,11 @@
 package controller;
 
 import DAO.PedidosDAO;
+import DAO.ProdutosDAO;
 import DAO.VendedorDAO;
+import java.util.ArrayList;
+import models.Pedido;
+import models.Produto;
 
 /**
  *
@@ -24,4 +28,7 @@ public class PedidosController {
         PedidosDAO.requisitarProduto(cd_produto, cd_pedido, quantidade);
     }
     
+    public static ArrayList<Pedido> Pedidos(){
+      return PedidosDAO.consultarPedido();
+    }
 }

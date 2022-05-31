@@ -1,16 +1,25 @@
 package view;
 
+import controller.PedidosController;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import models.Pedido;
+
 
 public class telaRelatorios extends javax.swing.JFrame {
 
-    /**
-     * Creates new form telaRelatorios
-     */
+   ArrayList<Pedido> pedidos;
+   
     public telaRelatorios() {
         initComponents();
         setLocationRelativeTo(null);
-        //setExtendedState(telaLogin.MAXIMIZED_BOTH);
+        pedidos = PedidosController.Pedidos();
+        DefaultTableModel model = (DefaultTableModel) tableRel.getModel();
+        for (int i = 0; i < pedidos.size(); i++) {
+            model.addRow(new Object[]{pedidos.get(i).getCd_pedido(), pedidos.get(i).getCd_vendedor(), pedidos.get(i).getCd_cliente(), pedidos.get(i).getData()});
+        }
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -22,7 +31,7 @@ public class telaRelatorios extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableRel = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -36,7 +45,7 @@ public class telaRelatorios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableRel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -47,7 +56,7 @@ public class telaRelatorios extends javax.swing.JFrame {
                 "Cliente", "Itens", "Total", "Data"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableRel);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgtelaClienteHouse.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -241,6 +250,6 @@ public class telaRelatorios extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableRel;
     // End of variables declaration//GEN-END:variables
 }

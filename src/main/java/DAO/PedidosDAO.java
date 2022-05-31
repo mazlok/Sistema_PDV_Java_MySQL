@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import models.Pedido;
 import models.Produto;
 
 /**
@@ -152,4 +153,47 @@ public class PedidosDAO {
         }
         return 0;
     } //fim do método consultarClientes
+    
+    public static ArrayList<Pedido> consultarPedido() {
+        ArrayList<Pedido> listaRetorno = new ArrayList<>();
+        try {
+//Carrego o driver para acesso ao banco
+            Class.forName(DRIVER);
+            conexao = DriverManager.getConnection(url, LOGIN, SENHA);
+            Statement instrucaoSQL = conexao.createStatement();
+            rs = instrucaoSQL.executeQuery("SELECT * FROM pedido;");
+            if (rs != null) {
+                while (rs.next()) {
+                    Pedido c = new Pedido();
+                    c.setCd_pedido(rs.getInt("cd_pedido"));
+                    c.setCd_vendedor(rs.getInt("cd_vendedor"));
+                    c.setCd_cliente(rs.getInt("cd_cliente"));
+                    c.setData(rs.getString("data"));                   
+                    listaRetorno.add(c);
+                }
+            } else {
+                throw new SQLException();
+            }
+        } catch (SQLException e) {
+            listaRetorno = null;
+        } catch (ClassNotFoundException ex) {
+
+            listaRetorno = null;
+        } finally {
+//Libero os recursos usados
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (SQLException ex) {
+            }
+        }
+        return listaRetorno;
+    } //fim do método consultarPedidos
 }
