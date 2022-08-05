@@ -1,11 +1,11 @@
-# projeto_integradorII
-Sistema de Vendas para Loja de Informática com CRUD.
+# PONTO DE VENDA COM CRUD e BANCO DE DADOS
+
+Projeto Integrador - Desenvolvimento Estruturado de Sistemas - SENAC - Turma A
 
 Desenvolvedores:
 
-- Alexandre Machado
-- Bruna Gomes
-- Lucas Oliveira
-- Ramon Nogueira
-- Wellerson Mateus
-- William Mazotti
+- William Mazotti da Silva
+- Bruna Gomes Coutinho
+- Lucas Oliveira de Jesus
+- Ramon Nogueira Borges Pinheiro
+- Wellerson Mateus Brito dos Santos
